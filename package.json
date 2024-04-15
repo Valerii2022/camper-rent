@@ -2,6 +2,7 @@
   "name": "camper-rent",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://valerii2022.github.io/camper-rent/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.3",
