@@ -1,0 +1,56 @@
+.headerWrapper {
+    background-color: var(--primary-bg-color);
+}
+
+.headerInner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.navigate {
+    display: flex;
+    gap: 32px;
+    flex-grow: 1;
+    margin-right: 32px;
+}
+
+.link {
+    font-size: 24px;
+    font-weight: 600;
+    transition: color 250ms linear;
+}
+
+.link:hover,
+.link:focus {
+    color: var(--bg-color);
+}
+
+.contacts {
+    display: flex;
+    text-align: center;
+}
+
+.contactsItem {
+    padding: 10px;
+    background-color: var(--secondary-accent-color);
+
+}
+
+.contactLink {
+    display: flex;
+    color: var(--bg-color);
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    transition: color 250ms linear;
+}
+
+.contactLink:hover,
+.contactLink:focus {
+    color: var(--primary-accent-color);
+}
+
+.icon {
+    fill: currentColor;
+}

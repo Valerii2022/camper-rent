@@ -1,0 +1,13 @@
+.hero {
+  height: 640px;
+  background-image: url('../image/hero.png');
+}
+
+.catalog {
+  display: flex;
+  gap: 64px;
+}
+
+.catalogContent {
+  flex-grow: 1;
+}
