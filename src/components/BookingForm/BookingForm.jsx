@@ -1,3 +1,5 @@
+import { CalendarInput } from 'components/Calendar/Calendar';
+
 export const BookingForm = () => {
   return (
     <form>
@@ -9,9 +11,10 @@ export const BookingForm = () => {
       <label>
         <input type="email" placeholder="Email" name="email" />
       </label>
-      <label>
+      {/* <label>
         <input type="text" placeholder="Booking date" name="date" />
-      </label>
+      </label> */}
+      <CalendarInput />
       <label>
         <textarea placeholder="Comment" name="comment" />
       </label>
