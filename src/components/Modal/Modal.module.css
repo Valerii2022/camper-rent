@@ -3,24 +3,25 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(18, 20, 23, 0.5);
   z-index: 1200;
-  overflow: auto;
+  overflow: scroll;
 }
 
 .modal {
-  width: 541px;
+  width: 600px;
   padding: 40px;
   border-radius: 24px;
   background-color: #fff;
   position: absolute;
-  top: 50%;
+  top: 0;
+  /* top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
 }
 
 .closeIcon {
@@ -30,4 +31,16 @@
   cursor: pointer;
   stroke: #121417;
   transition: stroke 250ms linear;
+}
+
+.reviewAvatar {
+  width: 60px;
+  height: 60px;
+  background-color: var(--primary-bg-color);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  color: var(--primary-accent-color);
 }

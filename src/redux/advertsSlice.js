@@ -7,11 +7,12 @@ const advertsSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchAdverts.pending, state => {
-        // state.isLoading = true;
+        state.isLoading = true;
       })
       .addCase(fetchAdverts.fulfilled, (state, action) => {
-        console.log(action.payload);
-        //   state.isLoading = false;
+        state.isLoading = false;
+        state.items = action.payload;
+        state.error = null;
         //   state.error = null;
         //   if (
         //     action.meta.arg.pageNumber === 1 ||
@@ -29,7 +30,7 @@ const advertsSlice = createSlice({
         //   }
       })
       .addCase(fetchAdverts.rejected, (state, { payload }) => {
-        // state.isLoading = false;
+        state.isLoading = false;
         state.error = payload;
       });
   },

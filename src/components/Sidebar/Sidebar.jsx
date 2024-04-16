@@ -7,6 +7,7 @@ import { ReactComponent as ShowerIcon } from '../../image/shower.svg';
 import { ReactComponent as VanIcon } from '../../image/van.svg';
 import { ReactComponent as IntegratedIcon } from '../../image/integrated.svg';
 import { ReactComponent as AlcoveIcon } from '../../image/alcove.svg';
+import { ReactComponent as LocationIcon } from '../../image/location.svg';
 
 export const Sidebar = () => {
   return (
@@ -14,7 +15,8 @@ export const Sidebar = () => {
       <form>
         <label>
           Location
-          <input type="text" />
+          <LocationIcon width="32" height="32" />
+          <input type="text" placeholder="City" />
         </label>
         <h2>Filters</h2>
         <h3>Vehicle equipment</h3>
