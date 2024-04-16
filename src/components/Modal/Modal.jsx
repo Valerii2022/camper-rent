@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import css from './Modal.module.css';
 import { ReactComponent as ClosetIcon } from '../../image/close.svg';
@@ -16,6 +16,8 @@ import { AdvertDetails } from 'components/AdvertDetails/AdvertDetails';
 const modalRoot = document.querySelector('#modal-root');
 
 export const Modal = ({ modalIsOpen, currentId }) => {
+  const [information, setInformation] = useState(false);
+  const [features, setFeatures] = useState(false);
   const { items } = useSelector(getAdverts);
   const currentAdvert = items.find(el => el._id === currentId);
   const {
@@ -47,10 +49,14 @@ export const Modal = ({ modalIsOpen, currentId }) => {
     };
   }, [modalIsOpen]);
 
-  const handleBackdropClick = event => {
-    if (event.currentTarget === event.target) {
+  const handleBackdropClick = e => {
+    if (e.currentTarget === e.target) {
       modalIsOpen();
     }
+  };
+
+  const handleInfoBtnClick = () => {
+    setInformation(true);
   };
 
   return createPortal(
@@ -93,76 +99,104 @@ export const Modal = ({ modalIsOpen, currentId }) => {
             <p>{description}</p>
             <ul>
               <li>
-                <button>Features</button>
-                <div>
-                  <AdvertDetails advert={currentAdvert} />
-                  <h2>Vehicle details</h2>
-                  <ul>
-                    <li>
-                      <p>Form</p>
-                      <p>{form}</p>
-                    </li>
-                    <li>
-                      <p>Length</p>
-                      <p>{length}</p>
-                    </li>
-                    <li>
-                      <p>Width</p>
-                      <p>{width}</p>
-                    </li>
-                    <li>
-                      <p>Height</p>
-                      <p>{height}</p>
-                    </li>
-                    <li>
-                      <p>Tank</p>
-                      <p>{tank}</p>
-                    </li>
-                    <li>
-                      <p>Consumption</p>
-                      <p>{consumption}</p>
-                    </li>
-                  </ul>
-                </div>
+                <button
+                  onClick={() => {
+                    handleInfoBtnClick();
+                    setFeatures(true);
+                  }}
+                >
+                  Features
+                </button>
               </li>
               <li>
-                <button>Reviews</button>
-                <div>
-                  {reviews ? (
-                    <ul>
-                      {reviews.map(el => {
-                        const avatar = el.reviewer_name.charAt(0);
-                        const activeStars = Array(
-                          parseInt(el.reviewer_rating)
-                        ).fill(<ActiveStarIcon width="32" height="32" />);
-                        const transparentStars = Array(
-                          5 - parseInt(el.reviewer_rating)
-                        ).fill(<TransparentStarIcon width="32" height="32" />);
-                        const allStars = [...activeStars, ...transparentStars];
-                        return (
-                          <li key={nanoid(3)}>
-                            <div className={css.reviewAvatar}>{avatar}</div>
-                            <p>{el.reviewer_name}</p>
-                            <div>
-                              <div>
-                                {allStars.map((star, index) => (
-                                  <span key={index}>{star}</span>
-                                ))}
-                              </div>
-                              {el.reviewer_rating}
-                            </div>
-                            <p>{el.comment}</p>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  ) : (
-                    'No reviews yet'
-                  )}
-                  <BookingForm />
-                </div>
+                <button
+                  onClick={() => {
+                    handleInfoBtnClick();
+                    setFeatures(false);
+                  }}
+                >
+                  Reviews
+                </button>
               </li>
             </ul>
+            {information && (
+              <div>
+                {features ? (
+                  <div>
+                    <AdvertDetails advert={currentAdvert} />
+                    <div>
+                      <h2>Vehicle details</h2>
+                      <ul>
+                        <li>
+                          <p>Form</p>
+                          <p>{form}</p>
+                        </li>
+                        <li>
+                          <p>Length</p>
+                          <p>{length}</p>
+                        </li>
+                        <li>
+                          <p>Width</p>
+                          <p>{width}</p>
+                        </li>
+                        <li>
+                          <p>Height</p>
+                          <p>{height}</p>
+                        </li>
+                        <li>
+                          <p>Tank</p>
+                          <p>{tank}</p>
+                        </li>
+                        <li>
+                          <p>Consumption</p>
+                          <p>{consumption}</p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    {reviews ? (
+                      <ul>
+                        {reviews.map(el => {
+                          const avatar = el.reviewer_name.charAt(0);
+                          const activeStars = Array(
+                            parseInt(el.reviewer_rating)
+                          ).fill(<ActiveStarIcon width="32" height="32" />);
+                          const transparentStars = Array(
+                            5 - parseInt(el.reviewer_rating)
+                          ).fill(
+                            <TransparentStarIcon width="32" height="32" />
+                          );
+                          const allStars = [
+                            ...activeStars,
+                            ...transparentStars,
+                          ];
+                          return (
+                            <li key={nanoid(3)}>
+                              <div className={css.reviewAvatar}>{avatar}</div>
+                              <p>{el.reviewer_name}</p>
+                              <div>
+                                <div>
+                                  {allStars.map((star, index) => (
+                                    <span key={index}>{star}</span>
+                                  ))}
+                                </div>
+                                {el.reviewer_rating}
+                              </div>
+                              <p>{el.comment}</p>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    ) : (
+                      'No reviews yet'
+                    )}
+                  </div>
+                )}
+                <BookingForm />
+              </div>
+            )}
           </div>
         )}
       </div>
