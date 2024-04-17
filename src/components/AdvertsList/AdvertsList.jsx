@@ -11,7 +11,7 @@ import { getFavourites } from 'redux/selectors';
 import { addFavourites, deleteFavourites } from 'redux/favouritesSlise';
 import { BookingSuccessModal } from 'components/Modal/BookingSuccessModal';
 
-export const AdvertsList = ({ adverts }) => {
+export const AdvertsList = ({ adverts, page, setPage }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [successModalIsOpen, setSuccessModalIsOpen] = useState(false);
   const [id, setId] = useState(null);
@@ -41,6 +41,10 @@ export const AdvertsList = ({ adverts }) => {
 
   const handleFavouritesDelete = e => {
     dispatch(deleteFavourites(e.currentTarget.id));
+  };
+
+  const handleLoadMoreBtnclick = () => {
+    setPage(page + 1);
   };
 
   return (
@@ -112,7 +116,9 @@ export const AdvertsList = ({ adverts }) => {
           <p>There are no adverts yet...</p>
         )}
 
-        {adverts.length > 4 && <button>Load more</button>}
+        {adverts.length === 4 && (
+          <button onClick={handleLoadMoreBtnclick}>Load more</button>
+        )}
       </div>
       {modalIsOpen && (
         <Modal

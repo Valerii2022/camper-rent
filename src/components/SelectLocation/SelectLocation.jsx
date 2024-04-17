@@ -1,4 +1,3 @@
-import css from './SelectLocation.module.css';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
@@ -94,7 +93,6 @@ export const SelectLocation = ({ locationChanging }) => {
 
   return (
     <Select
-      className={css.selectPriceField}
       defaultValue={location}
       onChange={handleChangeInput}
       maxMenuHeight={188}
