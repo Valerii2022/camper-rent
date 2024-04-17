@@ -7,7 +7,6 @@ export const CalendarInput = () => {
 
   return (
     <div>
-      <h2>Виберіть дату:</h2>
       <DatePicker
         selected={selectedDate} // Поточно вибрана дата
         onChange={date => setSelectedDate(date)} // Обробник події зміни дати

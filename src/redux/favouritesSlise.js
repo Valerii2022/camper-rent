@@ -6,19 +6,17 @@ const favouritesSlice = createSlice({
   name: 'filter',
   initialState: {
     favourites: [],
-    filter: { filter: false, rentalPrice: '1000', min: '0', max: '10000' },
+    filter: [],
   },
   reducers: {
     addFavourites(state, { payload }) {
-      // state.favourites.push(payload);
+      state.favourites = [...state.favourites, payload];
     },
     deleteFavourites(state, { payload }) {
-      // state.favourites = state.favourites.filter(id => id !== payload);
+      state.favourites = state.favourites.filter(el => el !== payload);
     },
     addFilter(state, { payload }) {
-      // state.filter.rentalPrice = payload.rentalPrice;
-      // state.filter.min = payload.min;
-      // state.filter.max = payload.max;
+      state.filter = payload;
     },
   },
 });

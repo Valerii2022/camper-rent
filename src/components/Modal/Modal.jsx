@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import css from './Modal.module.css';
 import { ReactComponent as ClosetIcon } from '../../image/close.svg';
-import { ReactComponent as HeartIcon } from '../../image/heart.svg';
 import { ReactComponent as StarIcon } from '../../image/star.svg';
 import { ReactComponent as LocationIcon } from '../../image/location.svg';
 import { ReactComponent as ActiveStarIcon } from '../../image/star.svg';
@@ -15,8 +14,9 @@ import { AdvertDetails } from 'components/AdvertDetails/AdvertDetails';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export const Modal = ({ modalIsOpen, currentId }) => {
+export const Modal = ({ modalIsOpen, currentId, successModalOpening }) => {
   const [information, setInformation] = useState(false);
+
   const [features, setFeatures] = useState(false);
   const { items } = useSelector(getAdverts);
   const currentAdvert = items.find(el => el._id === currentId);
@@ -39,6 +39,7 @@ export const Modal = ({ modalIsOpen, currentId }) => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
         modalIsOpen();
+        document.body.classList.remove('lock');
       }
     };
 
@@ -52,6 +53,7 @@ export const Modal = ({ modalIsOpen, currentId }) => {
   const handleBackdropClick = e => {
     if (e.currentTarget === e.target) {
       modalIsOpen();
+      document.body.classList.remove('lock');
     }
   };
 
@@ -66,14 +68,22 @@ export const Modal = ({ modalIsOpen, currentId }) => {
           className={css.closeIcon}
           width="24"
           height="24"
-          onClick={modalIsOpen}
+          onClick={() => {
+            modalIsOpen();
+            document.body.classList.remove('lock');
+          }}
         />
         {currentAdvert && (
           <div>
             <h2>{name}</h2>
             <div>
-              <span>€{price}</span>
-              <HeartIcon width="32" height="32" />
+              <span>
+                €
+                {price.toLocaleString('ru-RU', {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+              </span>
             </div>
             <div>
               <StarIcon width="32" height="32" />
@@ -194,7 +204,7 @@ export const Modal = ({ modalIsOpen, currentId }) => {
                     )}
                   </div>
                 )}
-                <BookingForm />
+                <BookingForm modalIsOpen={successModalOpening} />
               </div>
             )}
           </div>

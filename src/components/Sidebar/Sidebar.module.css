@@ -1,3 +1,23 @@
 .sidebar {
-    width: 360px;
+  width: 360px;
+}
+
+.filterInput {
+  display: none;
+}
+
+.filterLabel {
+  border: 1px solid rgba(16, 24, 40, 0.2);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 112px;
+  height: 95px;
+}
+
+.filterInput:checked ~ .filterLabel {
+  border: 1px solid var(--primary-accent-color);
 }
