@@ -6,7 +6,7 @@ const favouritesSlice = createSlice({
   name: 'filter',
   initialState: {
     favourites: [],
-    filter: [],
+    filter: {},
   },
   reducers: {
     addFavourites(state, { payload }) {

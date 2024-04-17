@@ -5,18 +5,18 @@ axios.defaults.baseURL = 'https://661d607b98427bbbef01a6d6.mockapi.io';
 
 export const fetchAdverts = createAsyncThunk(
   'adverts/fetchFiltered',
-  async ({ page }, thunkAPI) => {
+  async ({ page, location, type }, thunkAPI) => {
+    const params = {
+      page,
+      limit: 4,
+      location,
+      form: type,
+    };
     try {
-      const { data } = await axios.get('/adverts', {
-        params: {
-          page,
-          limit: 4,
-        },
-      });
+      const { data } = await axios.get('/adverts', { params });
       return data;
     } catch (e) {
-      console.log(e);
-      return thunkAPI.rejectWithValue(e);
+      return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
@@ -28,8 +28,7 @@ export const fetchTotalAdverts = createAsyncThunk(
       const { data } = await axios.get('/adverts');
       return data;
     } catch (e) {
-      console.log(e);
-      return thunkAPI.rejectWithValue(e);
+      return thunkAPI.rejectWithValue(e.message);
     }
   }
 );

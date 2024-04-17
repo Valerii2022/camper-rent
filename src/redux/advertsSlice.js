@@ -4,7 +4,8 @@ import { fetchAdverts, fetchTotalAdverts } from './operations';
 const advertsSlice = createSlice({
   name: 'adverts',
   initialState: {
-    totalAdverts: 0,
+    totalAdvertsCount: 0,
+    totalAdverts: [],
     items: [],
     isLoading: false,
     error: null,
@@ -19,17 +20,23 @@ const advertsSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchAdverts.fulfilled, (state, action) => {
+        if (action.meta.arg.page === 1) {
+          state.items = action.payload;
+        } else {
+          state.items = [...state.items, ...action.payload];
+        }
         state.isLoading = false;
-        state.items = action.payload;
         state.error = null;
       })
-      .addCase(fetchTotalAdverts.fulfilled, (state, action) => {
+      .addCase(fetchTotalAdverts.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.totalAdverts = action.payload.length;
+        state.totalAdverts = payload;
+        state.totalAdvertsCount = payload.length;
         state.error = null;
       })
       .addCase(fetchAdverts.rejected, (state, { payload }) => {
         state.isLoading = false;
+        state.items = [];
         state.error = payload;
       })
       .addCase(fetchTotalAdverts.rejected, (state, { payload }) => {

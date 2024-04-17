@@ -7,9 +7,10 @@ import { AdvertDetails } from 'components/AdvertDetails/AdvertDetails';
 import { useState } from 'react';
 import { Modal } from 'components/Modal/Modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFavourites } from 'redux/selectors';
+import { getAdverts, getFavourites } from 'redux/selectors';
 import { addFavourites, deleteFavourites } from 'redux/favouritesSlise';
 import { BookingSuccessModal } from 'components/Modal/BookingSuccessModal';
+import { fetchAdverts } from 'redux/operations';
 
 export const AdvertsList = ({ adverts, page, setPage }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -19,6 +20,7 @@ export const AdvertsList = ({ adverts, page, setPage }) => {
   const dispatch = useDispatch();
 
   const favourites = useSelector(getFavourites);
+  const { totalAdvertsCount } = useSelector(getAdverts);
 
   const handleModalOpening = () => {
     setModalIsOpen(!modalIsOpen);
@@ -44,6 +46,7 @@ export const AdvertsList = ({ adverts, page, setPage }) => {
   };
 
   const handleLoadMoreBtnclick = () => {
+    dispatch(fetchAdverts);
     setPage(page + 1);
   };
 
@@ -116,7 +119,7 @@ export const AdvertsList = ({ adverts, page, setPage }) => {
           <p>There are no adverts yet...</p>
         )}
 
-        {adverts.length === 4 && (
+        {adverts.length >= 4 && adverts.length < totalAdvertsCount && (
           <button onClick={handleLoadMoreBtnclick}>Load more</button>
         )}
       </div>

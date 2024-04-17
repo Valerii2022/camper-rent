@@ -12,21 +12,30 @@ import { SelectLocation } from 'components/SelectLocation/SelectLocation';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addFilter } from 'redux/favouritesSlise';
+import { fetchAdverts } from 'redux/operations';
 
 export const Sidebar = () => {
   const [location, setLocation] = useState('');
+  const [type, setType] = useState('');
 
   const dispatch = useDispatch();
+
+  const handleChangeRadioBtn = e => {
+    const { id } = e.target;
+    setType(id);
+  };
 
   const handleSubmitForm = e => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = [];
     formData.forEach((_, key) => {
-      data.push(key);
+      if (key !== 'type') {
+        data.push(key);
+      }
     });
-    data.push(location);
-    dispatch(addFilter(data));
+    dispatch(addFilter({ location, type, equipment: data }));
+    dispatch(fetchAdverts({ page: 1, location, type }));
   };
 
   return (
@@ -35,7 +44,6 @@ export const Sidebar = () => {
         <label>
           Location
           <LocationIcon width="32" height="32" />
-          {/* <input type="text" placeholder="City" name="location" /> */}
           <SelectLocation locationChanging={setLocation} />
         </label>
         <h2>Filters</h2>
@@ -106,34 +114,37 @@ export const Sidebar = () => {
         <ul>
           <li>
             <input
-              type="checkbox"
-              id="van"
+              type="radio"
+              id="panelTruck"
               className={css.filterInput}
-              name="van"
+              name="type"
+              onChange={handleChangeRadioBtn}
             />
-            <label htmlFor="van" className={css.filterLabel}>
+            <label htmlFor="panelTruck" className={css.filterLabel}>
               <VanIcon width="32" height="32" />
               Van
             </label>
           </li>
           <li>
             <input
-              type="checkbox"
-              id="integrated"
+              type="radio"
+              id="fullyIntegrated"
               className={css.filterInput}
-              name="integrated"
+              name="type"
+              onChange={handleChangeRadioBtn}
             />
-            <label htmlFor="integrated" className={css.filterLabel}>
+            <label htmlFor="fullyIntegrated" className={css.filterLabel}>
               <IntegratedIcon width="32" height="32" />
               Fully Integrated
             </label>
           </li>
           <li>
             <input
-              type="checkbox"
+              type="radio"
               id="alcove"
               className={css.filterInput}
-              name="alcove"
+              name="type"
+              onChange={handleChangeRadioBtn}
             />
             <label htmlFor="alcove" className={css.filterLabel}>
               <AlcoveIcon width="32" height="32" />

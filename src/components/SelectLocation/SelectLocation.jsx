@@ -1,24 +1,32 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
+import { fetchAdverts } from 'redux/operations';
 import { getAdverts } from 'redux/selectors';
 
 export const SelectLocation = ({ locationChanging }) => {
   const [location, setLocation] = useState('');
-
-  const { items } = useSelector(getAdverts);
-  const locations = items.map(el => el.location);
+  const dispatch = useDispatch();
+  const { totalAdverts } = useSelector(getAdverts);
+  const locations = totalAdverts.map(el => el.location);
   const uniqueSet = new Set(locations);
   const uniqueLocations = Array.from(uniqueSet);
 
+  useEffect(() => {
+    dispatch(fetchAdverts({ page: 1, location, type: '' }));
+  }, [location, dispatch]);
+
   const handleChangeInput = e => {
-    setLocation(e.label);
-    locationChanging(e.label);
+    setLocation(e.value);
+    locationChanging(e.value);
   };
 
-  const locationOptions = uniqueLocations.map(el => {
-    return { value: el, label: el };
-  });
+  const locationOptions = [
+    { value: null, label: 'All locations' },
+    ...uniqueLocations.map(el => {
+      return { value: el, label: el };
+    }),
+  ];
 
   const selectStyles = {
     control: () => ({
@@ -92,16 +100,18 @@ export const SelectLocation = ({ locationChanging }) => {
   };
 
   return (
-    <Select
-      defaultValue={location}
-      onChange={handleChangeInput}
-      maxMenuHeight={188}
-      placeholder=""
-      options={locationOptions}
-      styles={selectStyles}
-      components={{
-        IndicatorSeparator: () => null,
-      }}
-    />
+    <>
+      <Select
+        defaultValue={location}
+        onChange={handleChangeInput}
+        maxMenuHeight={188}
+        placeholder="All locations"
+        options={locationOptions}
+        styles={selectStyles}
+        components={{
+          IndicatorSeparator: () => null,
+        }}
+      />
+    </>
   );
 };
