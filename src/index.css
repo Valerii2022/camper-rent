@@ -4,12 +4,13 @@
   --primary-color: #101828;
   --secondary-color: #475467;
   --bg-color: #006d79;
-  --primaery-white: #ffffff;
+  --primary-white: #ffffff;
   --primary-accent-color: #e44848;
   --secondary-accent-color: #ffc531;
   --primary-bg-color: #f2f4f7;
   --secondary-bg-color: #f7f7f7;
   --transition: 250ms linear;
+  --border-color: rgba(16, 24, 40, 0.2)
 }
 
 body {

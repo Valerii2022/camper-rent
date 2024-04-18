@@ -7,7 +7,7 @@
 }
 
 .filterLabel {
-  border: 1px solid rgba(16, 24, 40, 0.2);
+  border: 1px solid var(--border-color);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -18,6 +18,6 @@
   height: 95px;
 }
 
-.filterInput:checked ~ .filterLabel {
+.filterInput:checked~.filterLabel {
   border: 1px solid var(--primary-accent-color);
 }

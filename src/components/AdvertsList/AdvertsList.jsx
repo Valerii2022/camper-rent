@@ -54,7 +54,7 @@ export const AdvertsList = ({ adverts, page, setPage }) => {
     <>
       <div className={css.catalogContent}>
         {adverts.length > 0 ? (
-          <ul>
+          <ul className={css.advertsList}>
             {adverts.map(advert => {
               const {
                 _id,
@@ -69,48 +69,54 @@ export const AdvertsList = ({ adverts, page, setPage }) => {
               const isFavourite = favourites.includes(advert._id);
 
               return (
-                <li key={_id}>
-                  <img src={gallery[0]} alt={name} width={200} />
-                  <h2>{name}</h2>
-                  <div>
-                    <span>
-                      €
-                      {price.toLocaleString('ru-RU', {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      })}
-                    </span>
-                    {isFavourite ? (
-                      <ActiveHeartIcon
-                        id={advert._id}
-                        width="32"
-                        height="32"
-                        onClick={handleFavouritesDelete}
-                      />
-                    ) : (
-                      <HeartIcon
-                        id={advert._id}
-                        width="32"
-                        height="32"
-                        onClick={handleFavouritesAdd}
-                      />
-                    )}
+                <li key={_id} className={css.advert}>
+                  <div className={css.advertImg}>
+                    <img src={gallery[0]} alt={name} width={290} />
                   </div>
-                  <div>
-                    <StarIcon width="32" height="32" />
-                    <span>
-                      {rating}({reviews.length} Reviews)
-                    </span>
+                  <div className={css.advertContent}>
+                    <div className={css.advertHeader}>
+                      <h2>{name}</h2>
+                      <div className={css.advertPrice}>
+                        <span>
+                          €
+                          {price.toLocaleString('ru-RU', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
+                        </span>
+                        {isFavourite ? (
+                          <ActiveHeartIcon
+                            id={advert._id}
+                            width="32"
+                            height="32"
+                            onClick={handleFavouritesDelete}
+                          />
+                        ) : (
+                          <HeartIcon
+                            id={advert._id}
+                            width="32"
+                            height="32"
+                            onClick={handleFavouritesAdd}
+                          />
+                        )}
+                      </div>
+                    </div>
+                    <div>
+                      <StarIcon width="32" height="32" />
+                      <span>
+                        {rating}({reviews.length} Reviews)
+                      </span>
+                    </div>
+                    <div>
+                      <LocationIcon width="32" height="32" />
+                      <span>{location}</span>
+                    </div>
+                    <p>{description}</p>
+                    <AdvertDetails advert={advert} />
+                    <button id={_id} onClick={handleShowMoreBtnClick}>
+                      Show more
+                    </button>
                   </div>
-                  <div>
-                    <LocationIcon width="32" height="32" />
-                    <span>{location}</span>
-                  </div>
-                  <p>{description}</p>
-                  <AdvertDetails advert={advert} />
-                  <button id={_id} onClick={handleShowMoreBtnClick}>
-                    Show more
-                  </button>
                 </li>
               );
             })}

@@ -1,4 +1,4 @@
-// import css from './AdvertDetails.module.css';
+import css from './AdvertDetails.module.css';
 import { ReactComponent as UsersIcon } from '../../image/user.svg';
 import { ReactComponent as GearIcon } from '../../image/gear.svg';
 import { ReactComponent as PetrolIcon } from '../../image/fuel.svg';
@@ -17,7 +17,7 @@ import { ReactComponent as ToiletIcon } from '../../image/toilet.svg';
 export const AdvertDetails = ({ advert }) => {
   const { adults, children, transmission, details, engine } = advert;
   return (
-    <ul>
+    <ul className={css.detailsList}>
       {adults !== 0 && (
         <li>
           <UsersIcon width="32" height="32" />
