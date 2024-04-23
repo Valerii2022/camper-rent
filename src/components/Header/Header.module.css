@@ -5,7 +5,22 @@
 .headerInner {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
+}
+
+.logoWrapper {
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.logoWrapper:hover,
+.logoWrapper:focus {
+    color: var(--primary-accent-color);
+}
+
+.navigateWrapper {
+    display: flex;
+    align-items: center;
 }
 
 .navigate {
@@ -23,7 +38,7 @@
 
 .link:hover,
 .link:focus {
-    color: var(--bg-color);
+    color: var(--primary-accent-color);
 }
 
 .contacts {

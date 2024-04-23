@@ -11,6 +11,7 @@ import { getAdverts, getFavourites } from 'redux/selectors';
 import { addFavourites, deleteFavourites } from 'redux/favouritesSlise';
 import { BookingSuccessModal } from 'components/Modal/BookingSuccessModal';
 import { fetchAdverts } from 'redux/operations';
+import { Button } from 'components/Button/Button';
 
 export const AdvertsList = ({ adverts, page, setPage }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -32,7 +33,7 @@ export const AdvertsList = ({ adverts, page, setPage }) => {
   };
 
   const handleShowMoreBtnClick = e => {
-    setId(e.target.id);
+    setId(e.currentTarget.id);
     setModalIsOpen(true);
     document.body.classList.add('lock');
   };
@@ -67,55 +68,60 @@ export const AdvertsList = ({ adverts, page, setPage }) => {
                 gallery,
               } = advert;
               const isFavourite = favourites.includes(advert._id);
+              const shortdescription = description.slice(0, 60);
 
               return (
                 <li key={_id} className={css.advert}>
                   <div className={css.advertImg}>
-                    <img src={gallery[0]} alt={name} width={290} />
+                    <img src={gallery[0]} alt={name} height={310} />
                   </div>
                   <div className={css.advertContent}>
-                    <div className={css.advertHeader}>
-                      <h2>{name}</h2>
-                      <div className={css.advertPrice}>
-                        <span>
-                          €
-                          {price.toLocaleString('ru-RU', {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2,
-                          })}
+                    <div>
+                      <div className={css.advertHeader}>
+                        <h2 className={css.title}>{name}</h2>
+                        <div className={css.advertPrice}>
+                          <span>
+                            €
+                            {price.toLocaleString('ru-RU', {
+                              minimumFractionDigits: 2,
+                              maximumFractionDigits: 2,
+                            })}
+                          </span>
+                          {isFavourite ? (
+                            <ActiveHeartIcon
+                              id={advert._id}
+                              width="24"
+                              height="24"
+                              onClick={handleFavouritesDelete}
+                            />
+                          ) : (
+                            <HeartIcon
+                              id={advert._id}
+                              width="24"
+                              height="24"
+                              onClick={handleFavouritesAdd}
+                            />
+                          )}
+                        </div>
+                      </div>
+                      <div className={css.reviewsWrapper}>
+                        <span className={css.review}>
+                          <StarIcon width="16" height="16" />
+                          {rating}({reviews.length} Reviews)
                         </span>
-                        {isFavourite ? (
-                          <ActiveHeartIcon
-                            id={advert._id}
-                            width="32"
-                            height="32"
-                            onClick={handleFavouritesDelete}
-                          />
-                        ) : (
-                          <HeartIcon
-                            id={advert._id}
-                            width="32"
-                            height="32"
-                            onClick={handleFavouritesAdd}
-                          />
-                        )}
+                        <span>
+                          <LocationIcon width="16" height="16" />
+                          {location}
+                        </span>
                       </div>
                     </div>
-                    <div>
-                      <StarIcon width="32" height="32" />
-                      <span>
-                        {rating}({reviews.length} Reviews)
-                      </span>
+                    <p className={css.description}>{shortdescription}...</p>
+                    <div className={css.advertsListWrap}>
+                      <AdvertDetails advert={advert} />
                     </div>
-                    <div>
-                      <LocationIcon width="32" height="32" />
-                      <span>{location}</span>
+                    <div id={_id} onClick={handleShowMoreBtnClick}>
+                      <Button title="Show more" />
                     </div>
-                    <p>{description}</p>
-                    <AdvertDetails advert={advert} />
-                    <button id={_id} onClick={handleShowMoreBtnClick}>
-                      Show more
-                    </button>
                   </div>
                 </li>
               );
@@ -126,7 +132,9 @@ export const AdvertsList = ({ adverts, page, setPage }) => {
         )}
 
         {adverts.length >= 4 && adverts.length < totalAdvertsCount && (
-          <button onClick={handleLoadMoreBtnclick}>Load more</button>
+          <div onClick={handleLoadMoreBtnclick} className={css.btnWrapper}>
+            <Button title="Load more" transparent />
+          </div>
         )}
       </div>
       {modalIsOpen && (

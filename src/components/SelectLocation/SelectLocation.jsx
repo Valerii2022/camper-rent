@@ -30,16 +30,16 @@ export const SelectLocation = ({ locationChanging }) => {
 
   const selectStyles = {
     control: () => ({
-      borderRadius: '14px',
-      backgroundColor: '#f7f7fb',
-      height: '48px',
+      borderRadius: '10px',
+      backgroundColor: '#f7f7f7',
+      height: '56px',
       display: 'flex',
       padding: '0',
-      width: '250px',
-      paddingLeft: '30px',
+      width: '360px',
+      paddingLeft: '44px',
       paddingRight: '14px',
       borderRight: 'none',
-      color: '#121417',
+      color: '#101828',
       fontSize: '18px',
       fontWeight: '500',
       lineHeight: '1.11',
@@ -52,7 +52,7 @@ export const SelectLocation = ({ locationChanging }) => {
       return {
         ...styles,
         backgroundColor: 'transparent',
-        color: isFocused ? '#121417' : 'rgba(18, 20, 23, 0.20)',
+        color: isFocused ? '#101828' : 'rgba(16, 24, 40, 0.20)',
         fontSize: '16px',
         fontWeight: '500',
         lineHeight: '1.25',
@@ -66,13 +66,13 @@ export const SelectLocation = ({ locationChanging }) => {
     placeholder: styles => {
       return {
         ...styles,
-        color: '#121417',
+        color: '#101828',
       };
     },
     dropdownIndicator: (styles, state) => ({
       ...styles,
       svg: {
-        fill: '#121417',
+        fill: '#101828',
       },
       cursor: 'pointer',
       transition: 'transform 250ms linear',
@@ -93,7 +93,7 @@ export const SelectLocation = ({ locationChanging }) => {
         height: '0px',
       },
       '::-webkit-scrollbar-thumb': {
-        background: 'rgba(18, 20, 23, 0.05)',
+        background: 'rgba(16, 24, 40, 0.05)',
         borderRadius: '10px',
       },
     }),

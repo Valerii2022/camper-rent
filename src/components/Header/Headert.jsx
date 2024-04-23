@@ -13,55 +13,59 @@ export const Header = () => {
     <header className={css.headerWrapper}>
       <div className="container">
         <div className={css.headerInner}>
-          <LogoIcon width="60" height="32" />
-          <nav>
-            <ul className={css.navigate}>
-              <li>
-                <NavLink
-                  className={css.link}
-                  to="/"
-                  onClick={handleActiveElementClick}
-                >
-                  Home
-                </NavLink>
+          <Link to="/" className={css.logoWrapper}>
+            <LogoIcon width="60" height="32" className={css.icon} />
+          </Link>
+          <div className={css.navigateWrapper}>
+            <nav>
+              <ul className={css.navigate}>
+                <li>
+                  <NavLink
+                    className={`${css.link} general`}
+                    to="/"
+                    onClick={handleActiveElementClick}
+                  >
+                    Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={`${css.link} general`}
+                    to="/catalog"
+                    onClick={handleActiveElementClick}
+                  >
+                    Catalog
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={`${css.link} general`}
+                    to="/favourites"
+                    onClick={handleActiveElementClick}
+                  >
+                    Favourites
+                  </NavLink>
+                </li>
+              </ul>
+            </nav>
+            <ul className={css.contacts}>
+              <li className={css.contactsItem}>
+                <Link to="tel:+380772552525" className={css.contactLink}>
+                  <PhoneIcon width="24" height="24" className={css.icon} />
+                  +38 (077) 255-25-25
+                </Link>
               </li>
-              <li>
-                <NavLink
-                  className={css.link}
-                  to="/catalog"
-                  onClick={handleActiveElementClick}
+              <li className={css.contactsItem}>
+                <Link
+                  to="mailto:camper-rental@test.com"
+                  className={css.contactLink}
                 >
-                  Catalog
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className={css.link}
-                  to="/favourites"
-                  onClick={handleActiveElementClick}
-                >
-                  Favourites
-                </NavLink>
+                  <EmailIcon width="24" height="24" className={css.icon} />
+                  camper-rental@test.com
+                </Link>
               </li>
             </ul>
-          </nav>
-          <ul className={css.contacts}>
-            <li className={css.contactsItem}>
-              <Link to="tel:+380772552525" className={css.contactLink}>
-                <PhoneIcon width="24" height="24" className={css.icon} />
-                +38 (077) 255-25-25
-              </Link>
-            </li>
-            <li className={css.contactsItem}>
-              <Link
-                to="mailto:camper-rental@test.com"
-                className={css.contactLink}
-              >
-                <EmailIcon width="24" height="24" className={css.icon} />
-                camper-rental@test.com
-              </Link>
-            </li>
-          </ul>
+          </div>
         </div>
       </div>
     </header>

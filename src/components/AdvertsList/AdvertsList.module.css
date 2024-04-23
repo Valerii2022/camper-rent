@@ -1,5 +1,5 @@
 .catalogContent {
-    flex-grow: 1;
+    width: 888px;
     padding: 100px 0;
 }
 
@@ -18,6 +18,13 @@
     border: 1px solid var(--border-color)
 }
 
+.advertContent {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 506px;
+}
+
 .advertImg {
     border-radius: 10px;
     width: 290px;
@@ -25,14 +32,61 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: red;
+    background-color: var(--primary-bg-color);
+    overflow: hidden;
 }
 
 .advertHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 8px;
+}
+
+.title,
+.advertPrice {
+    font-weight: 600;
     font-size: 24px;
     line-height: 1.25;
-    font-weight: 600;
+}
+
+.advertPrice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.reviewsWrapper {
+    display: flex;
+    gap: 16px;
+}
+
+.reviewsWrapper span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+}
+
+.review {
+    text-decoration: underline;
+}
+
+.description {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--secondary-color);
+}
+
+.advertsListWrap {
+    height: 96px;
+    overflow: hidden;
+}
+
+.btnWrapper {
+    display: flex;
+    justify-content: center;
 }

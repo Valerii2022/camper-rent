@@ -15,9 +15,7 @@ import { AdvertDetails } from 'components/AdvertDetails/AdvertDetails';
 const modalRoot = document.querySelector('#modal-root');
 
 export const Modal = ({ modalIsOpen, currentId, successModalOpening }) => {
-  const [information, setInformation] = useState(false);
-
-  const [features, setFeatures] = useState(false);
+  const [features, setFeatures] = useState(true);
   const { items } = useSelector(getAdverts);
   const currentAdvert = items.find(el => el._id === currentId);
   const {
@@ -35,6 +33,7 @@ export const Modal = ({ modalIsOpen, currentId, successModalOpening }) => {
     width,
     height,
   } = currentAdvert;
+
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
@@ -57,156 +56,152 @@ export const Modal = ({ modalIsOpen, currentId, successModalOpening }) => {
     }
   };
 
-  const handleInfoBtnClick = () => {
-    setInformation(true);
-  };
-
   return createPortal(
     <div className={css.overlay} onClick={handleBackdropClick}>
       <div className={css.modal}>
         <ClosetIcon
           className={css.closeIcon}
-          width="24"
-          height="24"
+          width="32"
+          height="32"
           onClick={() => {
             modalIsOpen();
             document.body.classList.remove('lock');
           }}
         />
         {currentAdvert && (
-          <div>
-            <h2>{name}</h2>
-            <div>
-              <span>
-                €
-                {price.toLocaleString('ru-RU', {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}
-              </span>
-            </div>
-            <div>
-              <StarIcon width="32" height="32" />
-              <span>
+          <div className={css.modalInner}>
+            <h2 className={css.title}>{name}</h2>
+            <div className={css.reviewsWrapper}>
+              <span className={css.review}>
+                <StarIcon width="16" height="16" />
                 {rating}({reviews.length} Reviews)
               </span>
+              <span>
+                <LocationIcon width="16" height="16" />
+                {location}
+              </span>
             </div>
-            <div>
-              <LocationIcon width="32" height="32" />
-              <span>{location}</span>
-            </div>
+            <p className={css.price}>
+              €
+              {price.toLocaleString('ua-UA', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
+            </p>
             {gallery && (
-              <ul>
+              <ul className={css.gallery}>
                 {gallery.map(el => {
                   return (
-                    <li key={nanoid(3)}>
-                      <img src={el} alt={name} width={100} />
+                    <li key={nanoid(3)} className={css.galleryItem}>
+                      <img src={el} alt={name} height={310} />
                     </li>
                   );
                 })}
               </ul>
             )}
-            <p>{description}</p>
-            <ul>
+            <p className={css.description}>{description}</p>
+            <ul className={css.detailsList}>
               <li>
                 <button
+                  className={css.detailsBtn}
                   onClick={() => {
-                    handleInfoBtnClick();
                     setFeatures(true);
                   }}
                 >
                   Features
+                  {features && <span className={css.line}></span>}
                 </button>
               </li>
               <li>
                 <button
+                  className={css.detailsBtn}
                   onClick={() => {
-                    handleInfoBtnClick();
                     setFeatures(false);
                   }}
                 >
                   Reviews
+                  {!features && <span className={css.line}></span>}
                 </button>
               </li>
             </ul>
-            {information && (
-              <div>
-                {features ? (
+            <div className={css.bottomBlock}>
+              {features ? (
+                <div className={css.infoBlock}>
+                  <AdvertDetails advert={currentAdvert} />
                   <div>
-                    <AdvertDetails advert={currentAdvert} />
-                    <div>
-                      <h2>Vehicle details</h2>
-                      <ul>
-                        <li>
-                          <p>Form</p>
-                          <p>{form}</p>
-                        </li>
-                        <li>
-                          <p>Length</p>
-                          <p>{length}</p>
-                        </li>
-                        <li>
-                          <p>Width</p>
-                          <p>{width}</p>
-                        </li>
-                        <li>
-                          <p>Height</p>
-                          <p>{height}</p>
-                        </li>
-                        <li>
-                          <p>Tank</p>
-                          <p>{tank}</p>
-                        </li>
-                        <li>
-                          <p>Consumption</p>
-                          <p>{consumption}</p>
-                        </li>
-                      </ul>
-                    </div>
+                    <h2 className={css.featuresTitle}>Vehicle details</h2>
+                    <ul className={css.featuresList}>
+                      <li>
+                        <p>Form</p>
+                        <p>{form}</p>
+                      </li>
+                      <li>
+                        <p>Length</p>
+                        <p>{length}</p>
+                      </li>
+                      <li>
+                        <p>Width</p>
+                        <p>{width}</p>
+                      </li>
+                      <li>
+                        <p>Height</p>
+                        <p>{height}</p>
+                      </li>
+                      <li>
+                        <p>Tank</p>
+                        <p>{tank}</p>
+                      </li>
+                      <li>
+                        <p>Consumption</p>
+                        <p>{consumption}</p>
+                      </li>
+                    </ul>
                   </div>
-                ) : (
-                  <div>
-                    {reviews ? (
-                      <ul>
-                        {reviews.map(el => {
-                          const avatar = el.reviewer_name.charAt(0);
-                          const activeStars = Array(
-                            parseInt(el.reviewer_rating)
-                          ).fill(<ActiveStarIcon width="32" height="32" />);
-                          const transparentStars = Array(
-                            5 - parseInt(el.reviewer_rating)
-                          ).fill(
-                            <TransparentStarIcon width="32" height="32" />
-                          );
-                          const allStars = [
-                            ...activeStars,
-                            ...transparentStars,
-                          ];
-                          return (
-                            <li key={nanoid(3)}>
+                </div>
+              ) : (
+                <div className={css.infoBlock}>
+                  {reviews ? (
+                    <ul className={css.reviewsList}>
+                      {reviews.map(el => {
+                        const avatar = el.reviewer_name.charAt(0);
+                        const activeStars = Array(
+                          parseInt(el.reviewer_rating)
+                        ).fill(<ActiveStarIcon width="16" height="16" />);
+                        const transparentStars = Array(
+                          5 - parseInt(el.reviewer_rating)
+                        ).fill(<TransparentStarIcon width="16" height="16" />);
+                        const allStars = [...activeStars, ...transparentStars];
+                        return (
+                          <li key={nanoid(3)}>
+                            <div className={css.avatarWrapper}>
                               <div className={css.reviewAvatar}>{avatar}</div>
-                              <p>{el.reviewer_name}</p>
                               <div>
+                                <p className={css.reviewerName}>
+                                  {el.reviewer_name}
+                                </p>
                                 <div>
-                                  {allStars.map((star, index) => (
-                                    <span key={index}>{star}</span>
-                                  ))}
+                                  <div>
+                                    {allStars.map((star, index) => (
+                                      <span key={index}>{star}</span>
+                                    ))}
+                                  </div>
                                 </div>
-                                {el.reviewer_rating}
                               </div>
-                              <p>{el.comment}</p>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    ) : (
-                      'No reviews yet'
-                    )}
-                  </div>
-                )}
+                            </div>
+                            <p className={css.comment}>{el.comment}</p>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  ) : (
+                    'No reviews yet'
+                  )}
+                </div>
+              )}
+              <div className={css.formBlock}>
                 <BookingForm modalIsOpen={successModalOpening} />
               </div>
-            )}
+            </div>
           </div>
         )}
       </div>

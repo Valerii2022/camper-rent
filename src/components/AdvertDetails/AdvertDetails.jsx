@@ -20,43 +20,43 @@ export const AdvertDetails = ({ advert }) => {
     <ul className={css.detailsList}>
       {adults !== 0 && (
         <li>
-          <UsersIcon width="32" height="32" />
+          <UsersIcon width="20" height="20" />
           {adults} adults
         </li>
       )}
       {children !== 0 && (
         <li>
-          <UsersIcon width="32" height="32" />
+          <UsersIcon width="20" height="20" />
           {children} children
         </li>
       )}
       {transmission && (
         <li>
-          <GearIcon width="32" height="32" />
+          <GearIcon width="20" height="20" />
           {transmission}
         </li>
       )}
       {engine && (
         <li>
-          <PetrolIcon width="32" height="32" />
+          <PetrolIcon width="20" height="20" />
           {engine}
         </li>
       )}
       {details.kitchen !== 0 && (
         <li>
-          <FoodIcon width="32" height="32" />
+          <FoodIcon width="20" height="20" />
           {details.kitchen > 1 ? `${details.kitchen} kitchen` : 'kitchen'}
         </li>
       )}
       {details.beds !== 0 && (
         <li>
-          <BedIcon width="32" height="32" />
+          <BedIcon width="20" height="20" />
           {details.beds > 1 ? `${details.beds} beds` : 'bed'}
         </li>
       )}
       {details.airConditioner !== 0 && (
         <li>
-          <AirConditionerIcon width="32" height="32" />
+          <AirConditionerIcon width="20" height="20" />
           {details.airConditioner > 1
             ? `${details.airConditioner} Air Conditioner`
             : 'Air Conditioner'}
@@ -64,31 +64,31 @@ export const AdvertDetails = ({ advert }) => {
       )}
       {details.CD !== 0 && (
         <li>
-          <CDIcon width="32" height="32" />
+          <CDIcon width="20" height="20" />
           {details.CD > 1 ? `${details.CD} CD` : 'CD'}
         </li>
       )}
       {details.TV !== 0 && (
         <li>
-          <TVIcon width="32" height="32" />
+          <TVIcon width="20" height="20" />
           {details.TV > 1 ? `${details.TV} TV` : 'TV'}
         </li>
       )}
       {details.freezer !== 0 && (
         <li>
-          <FreezerIcon width="32" height="32" />
+          <FreezerIcon width="20" height="20" />
           {details.freezer > 1 ? `${details.freezer} freezer` : 'freezer'}
         </li>
       )}
       {details.hob !== 0 && (
         <li>
-          <HobIcon width="32" height="32" />
+          <HobIcon width="20" height="20" />
           {details.hob > 1 ? `${details.hob} freezer` : 'freezer'}
         </li>
       )}
       {details.microwave !== 0 && (
         <li>
-          <MicrowaveIcon width="32" height="32" />
+          <MicrowaveIcon width="20" height="20" />
           {details.microwave > 1
             ? `${details.microwave} microwave`
             : 'microwave'}
@@ -96,19 +96,19 @@ export const AdvertDetails = ({ advert }) => {
       )}
       {details.radio !== 0 && (
         <li>
-          <RadioIcon width="32" height="32" />
+          <RadioIcon width="20" height="20" />
           {details.radio > 1 ? `${details.radio} radio` : 'radio'}
         </li>
       )}
       {details.shower !== 0 && (
         <li>
-          <ShowerIcon width="32" height="32" />
+          <ShowerIcon width="20" height="20" />
           {details.shower > 1 ? `${details.shower} shower` : 'shower'}
         </li>
       )}
       {details.toilet !== 0 && (
         <li>
-          <ToiletIcon width="32" height="32" />
+          <ToiletIcon width="20" height="20" />
           {details.toilet > 1 ? `${details.toilet} toilet` : 'toilet'}
         </li>
       )}

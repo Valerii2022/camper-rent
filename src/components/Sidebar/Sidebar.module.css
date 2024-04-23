@@ -1,9 +1,78 @@
 .sidebar {
   width: 360px;
+  padding-top: 100px;
 }
+
+
+
+.locationLabel {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: rgba(16, 24, 40, 0.6);
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.locationIcon {
+  position: absolute;
+  bottom: 18px;
+  left: 18px;
+  z-index: 1;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--secondary-color);
+  margin-bottom: 14px;
+}
+
+.subtitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.subtitle:after {
+  content: "";
+  height: 1px;
+  width: 100%;
+  background-color: rgba(16, 24, 40, 0.1);
+  ;
+}
+
+.optionWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-bottom: 64px;
+}
+
+.optionsList {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 8px;
+  column-gap: 10px;
+}
+
 
 .filterInput {
   display: none;
+}
+
+.optionsList li {
+  width: calc((100% - 20px) / 3);
+  height: 95px;
 }
 
 .filterLabel {
@@ -13,9 +82,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   gap: 8px;
-  width: 112px;
-  height: 95px;
+  width: 100%;
+  height: 100%;
+  line-height: 1.25;
+  font-weight: 500;
 }
 
 .filterInput:checked~.filterLabel {
