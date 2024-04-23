@@ -1,10 +1,11 @@
 {
   "files": {
-    "main.css": "/camper-rent/static/css/main.0c025ea0.css",
-    "main.js": "/camper-rent/static/js/main.474acb0d.js",
+    "main.css": "/camper-rent/static/css/main.d927a4bc.css",
+    "main.js": "/camper-rent/static/js/main.cd698ba6.js",
     "static/media/hero.png": "/camper-rent/static/media/hero.e592ed0ffa139b4713ac.png",
     "static/media/AC.svg": "/camper-rent/static/media/AC.e958509129baf1cbc457d03d571594e6.svg",
-    "static/media/van.svg": "/camper-rent/static/media/van.650243b32d84777b3e4f543efb602ad5.svg",
+    "static/media/van-option.svg": "/camper-rent/static/media/van-option.650243b32d84777b3e4f543efb602ad5.svg",
+    "static/media/van.svg": "/camper-rent/static/media/van.ea04b7b380cbd693397582e0d1c74667.svg",
     "static/media/alcove.svg": "/camper-rent/static/media/alcove.aa825a0616557ab4a8f3a18b9e8c4de4.svg",
     "static/media/integrated.svg": "/camper-rent/static/media/integrated.2042b45867a8c8f6b6eb17315c36dc23.svg",
     "static/media/toilet.svg": "/camper-rent/static/media/toilet.ac77761601bb432278c568a1ff4fb7be.svg",
@@ -28,13 +29,13 @@
     "static/media/shower.svg": "/camper-rent/static/media/shower.b6e38c85f8db354c4c8a3f56f72f5101.svg",
     "static/media/food.svg": "/camper-rent/static/media/food.afe6130490e04e1ebb0a3c725651ff4c.svg",
     "static/media/email.svg": "/camper-rent/static/media/email.bc7d1dbc053b236dfdd74e0ee682a0da.svg",
-    "static/media/close.svg": "/camper-rent/static/media/close.25dc3f46a342a188874fa545ced03ca2.svg",
     "static/media/phone.svg": "/camper-rent/static/media/phone.9553808c2045790e30e550f74b5bed2b.svg",
-    "main.0c025ea0.css.map": "/camper-rent/static/css/main.0c025ea0.css.map",
-    "main.474acb0d.js.map": "/camper-rent/static/js/main.474acb0d.js.map"
+    "static/media/close.svg": "/camper-rent/static/media/close.0ceaf29e17a2fbca0225b6e6fa7c9f05.svg",
+    "main.d927a4bc.css.map": "/camper-rent/static/css/main.d927a4bc.css.map",
+    "main.cd698ba6.js.map": "/camper-rent/static/js/main.cd698ba6.js.map"
   },
   "entrypoints": [
-    "static/css/main.0c025ea0.css",
-    "static/js/main.474acb0d.js"
+    "static/css/main.d927a4bc.css",
+    "static/js/main.cd698ba6.js"
   ]
 }
