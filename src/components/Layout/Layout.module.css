@@ -1,0 +1,15 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.mainContent {
+  flex-grow: 1;
+  background-color: var(--bg-color);
+}
+
+.footer {
+  text-align: center;
+  padding: 10px;
+}

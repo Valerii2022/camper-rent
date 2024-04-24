@@ -1,0 +1,34 @@
+/* .calendarContainerInner {
+  border: 1px solid rgba(16, 24, 40, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  width: 325px;
+  height: 273px;
+  background-color: var(--primary-white);
+} */
+
+/* .datePickerWrapper {
+  position: relative;
+  border-radius: 10px;
+  background-color: var(--secondary-bg-color);
+} */
+
+input {
+  height: 56px;
+  width: 100%;
+  /* padding: 18px; */
+  border-radius: 10px;
+  background-color: var(--secondary-bg-color);
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  font-family: 'Inter', sans-serif;
+}
+
+.icon {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+}

@@ -1,26 +1,36 @@
 .button {
-    width: 173px;
-    height: 56px;
-    border-radius: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 1.5;
-    letter-spacing: -0.01em;
-    border: none;
-    outline: none;
-    cursor: pointer;
+  width: 173px;
+  height: 56px;
+  border-radius: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .transparent {
-    color: var(--primary-color);
-    background-color: transparent;
-    border: 1px solid rgba(71, 84, 103, 0.2)
+  color: var(--primary-color);
+  background-color: transparent;
+  border: 1px solid rgba(71, 84, 103, 0.2);
+  transition: border-color var(--transition);
+}
+
+.transparent:hover {
+  border: 1px solid var(--primary-accent-color);
 }
 
 .general {
-    color: var(--primary-white);
-    background-color: var(--primary-accent-color);
+  color: var(--primary-white);
+  background-color: var(--primary-accent-color);
+  transition: background-color var(--transition);
+}
+
+.general:hover {
+  background-color: var(--hover-color);
 }

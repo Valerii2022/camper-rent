@@ -22,7 +22,7 @@ export const SelectLocation = ({ locationChanging }) => {
   };
 
   const locationOptions = [
-    { value: null, label: 'All locations' },
+    { value: null, label: 'City' },
     ...uniqueLocations.map(el => {
       return { value: el, label: el };
     }),
@@ -105,7 +105,7 @@ export const SelectLocation = ({ locationChanging }) => {
         defaultValue={location}
         onChange={handleChangeInput}
         maxMenuHeight={188}
-        placeholder="All locations"
+        placeholder="City"
         options={locationOptions}
         styles={selectStyles}
         components={{

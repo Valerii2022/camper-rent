@@ -1,4 +1,6 @@
-// import { CalendarInput } from 'components/Calendar/Calendar';
+import { CalendarInput } from 'components/Calendar/Calendar';
+import { Button } from 'components/Button/Button';
+import css from './BookingForm.module.css';
 
 export const BookingForm = ({ modalIsOpen }) => {
   const handleSubmitForm = e => {
@@ -15,22 +17,48 @@ export const BookingForm = ({ modalIsOpen }) => {
   return (
     <>
       <form onSubmit={handleSubmitForm}>
-        <h2>Book your campervan now</h2>
-        <p>Stay connected! We are always ready to help you.</p>
-        <label>
-          <input type="text" placeholder="Name" name="name" required />
-        </label>
-        <label>
-          <input type="email" placeholder="Email" name="email" required />
-        </label>
-        <label placeholder="Оберіть дату">
-          <input type="date" name="date" placeholder="Booking date" required />
-        </label>
-        {/* <CalendarInput /> */}
-        <label>
-          <textarea placeholder="Comment" name="comment" />
-        </label>
-        <button>Send</button>
+        <h2 className={css.title}>Book your campervan now</h2>
+        <p className={css.subtitle}>
+          Stay connected! We are always ready to help you.
+        </p>
+        <div className={css.formInner}>
+          <label>
+            <input
+              className={css.input}
+              type="text"
+              placeholder="Name"
+              name="name"
+              required
+            />
+          </label>
+          <label>
+            <input
+              className={css.input}
+              type="email"
+              placeholder="Email"
+              name="email"
+              required
+            />
+          </label>
+          {/* <label>
+            <input
+              className={css.input}
+              type="date"
+              name="date"
+              placeholder="Booking date"
+              required
+            />
+          </label> */}
+          <CalendarInput />
+          <label>
+            <textarea
+              placeholder="Comment"
+              name="comment"
+              className={css.textarea}
+            ></textarea>
+          </label>
+        </div>
+        <Button title="Send" />
       </form>
     </>
   );

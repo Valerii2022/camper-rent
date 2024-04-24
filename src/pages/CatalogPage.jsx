@@ -19,11 +19,9 @@ export const Catalog = () => {
   }, [dispatch, page, location, type]);
 
   return (
-    <>
-      <div className={`${css.catalog} container`}>
-        <Sidebar />
-        <AdvertsList adverts={items} page={page} setPage={setPage} />
-      </div>
-    </>
+    <div className={`${css.catalog} container`}>
+      <Sidebar />
+      <AdvertsList adverts={items} page={page} setPage={setPage} />
+    </div>
   );
 };

@@ -1,19 +1,35 @@
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css'; // Підключення стилів для react-datepicker
+import DatePicker, { CalendarContainer } from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import css from './Calendar.module.css';
+import { ReactComponent as CalendarIcon } from '../../image/calendar.svg';
 
-export const CalendarInput = () => {
-  const [selectedDate, setSelectedDate] = useState(null); // Стан для зберігання вибраної дати
-
+const MyContainer = ({ className, children }) => {
   return (
-    <div>
-      <DatePicker
-        selected={selectedDate} // Поточно вибрана дата
-        onChange={date => setSelectedDate(date)} // Обробник події зміни дати
-        dateFormat="dd/MM/yyyy" // Формат дати
-        isClearable // Дозволяє очищати вибрану дату
-        placeholderText="Оберіть дату" // Текст-підказка
-      />
-    </div>
+    <CalendarContainer className={className}>
+      <div className={css.calendarContainerInner}>{children}</div>
+    </CalendarContainer>
   );
 };
+
+export const CalendarInput = () => {
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  return (
+    <DatePicker
+      showIcon
+      icon={<CalendarIcon className={css.icon} />}
+      toggleCalendarOnIconClick
+      closeOnScroll={true}
+      selected={selectedDate}
+      calendarContainer={MyContainer}
+      required
+      className={css.input}
+      onChange={date => setSelectedDate(date)}
+      dateFormat="MM/dd/YYYY"
+      placeholderText="Booking date"
+    />
+  );
+};
+
+// https://reactdatepicker.com/

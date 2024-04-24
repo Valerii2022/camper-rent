@@ -1,11 +1,61 @@
 .hero {
-  height: 640px;
-  background-image: url('../image/hero.png');
+  width: 1440px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.titleWrapper {
+  padding: 64px;
+  background: url('../image/title.png');
+  background-repeat: no-repeat;
+  background-size: 700px;
+  background-position: center left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.title {
+  font-size: 96px;
+  color: var(--primary-white);
+}
+
+.subtitle {
+  font-size: 48px;
+  color: var(--secondary-accent-color);
+  margin-bottom: 36px;
+}
+
+.text {
+  color: var(--scrollbar-color);
+  font-size: 24px;
+  line-height: 1.5;
+  text-align: right;
+  margin-bottom: 60px;
+}
+
+.generalInfo {
+  padding: 64px 128px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.generalInfo li {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  background-color: var(--primary-bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .catalog {
   display: flex;
   gap: 64px;
+  background-color: var(--primary-bg-color);
 }
 
 .catalogContent {

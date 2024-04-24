@@ -1,0 +1,52 @@
+.title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--secondary-color);
+  margin-bottom: 24px;
+}
+
+.formInner {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.input {
+  height: 56px;
+}
+
+.textarea {
+  height: 114px;
+  resize: none;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  border-radius: 10px;
+  padding: 18px;
+  background-color: var(--secondary-bg-color);
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  font-family: 'Inter', sans-serif;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: rgba(16, 24, 40, 0.6);
+}
