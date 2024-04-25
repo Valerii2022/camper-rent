@@ -62,6 +62,7 @@ a {
 
 .active {
   color: var(--bg-color);
+  text-decoration: underline;
 }
 
 .lock {

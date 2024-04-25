@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { fetchAdverts } from 'redux/operations';
 import { getAdverts } from 'redux/selectors';
+import { reverseLocation } from 'utils/reverseLocation';
 
 export const SelectLocation = ({ locationChanging }) => {
   const [location, setLocation] = useState('');
@@ -24,37 +25,43 @@ export const SelectLocation = ({ locationChanging }) => {
   const locationOptions = [
     { value: null, label: 'City' },
     ...uniqueLocations.map(el => {
-      return { value: el, label: el };
+      const newEl = reverseLocation(el);
+      return { value: el, label: newEl };
     }),
   ];
 
   const selectStyles = {
+    // input: styles => ({
+    //   ...styles,
+    //   height: '52px',
+    // }),
     control: () => ({
       borderRadius: '10px',
       backgroundColor: '#f7f7f7',
       height: '56px',
       display: 'flex',
+      alignItems: 'center',
       padding: '0',
       width: '360px',
-      paddingLeft: '44px',
+      paddingLeft: '36px',
       paddingRight: '14px',
       borderRight: 'none',
       color: '#101828',
-      fontSize: '18px',
-      fontWeight: '500',
-      lineHeight: '1.11',
+      fontSize: '16px',
+      fontWeight: '400',
+      lineHeight: '1.25',
     }),
-    valueContainer: styles => ({
-      ...styles,
-      minWidth: '60px',
-    }),
+    // valueContainer: styles => ({
+    //   ...styles,
+    //   height: '52px',
+    // }),
     option: (styles, { isFocused }) => {
       return {
         ...styles,
         backgroundColor: 'transparent',
-        color: isFocused ? '#101828' : 'rgba(16, 24, 40, 0.20)',
+        color: isFocused ? '#101828' : 'rgba(16, 24, 40, 0.40)',
         fontSize: '16px',
-        fontWeight: '500',
+        fontWeight: '400',
         lineHeight: '1.25',
         cursor: 'pointer',
         paddingLeft: '0',
@@ -66,17 +73,21 @@ export const SelectLocation = ({ locationChanging }) => {
     placeholder: styles => {
       return {
         ...styles,
-        color: '#101828',
+        color: 'rgba(16, 24, 40, 0.6)',
+        fontSize: '16px',
+        fontWeight: '400',
+        lineHeight: '1.25',
       };
     },
     dropdownIndicator: (styles, state) => ({
       ...styles,
-      svg: {
-        fill: '#101828',
-      },
-      cursor: 'pointer',
-      transition: 'transform 250ms linear',
-      transform: state.isFocused ? 'rotate(180deg)' : null,
+      display: 'none',
+      // svg: {
+      //   fill: '#101828',
+      // },
+      // cursor: 'pointer',
+      // transition: 'transform 250ms linear',
+      // transform: state.isFocused ? 'rotate(180deg)' : null,
     }),
     menu: styles => ({
       ...styles,
@@ -86,17 +97,17 @@ export const SelectLocation = ({ locationChanging }) => {
       paddingBottom: '18px',
       paddingRight: '8px',
     }),
-    menuList: styles => ({
-      ...styles,
-      '::-webkit-scrollbar': {
-        width: '8px',
-        height: '0px',
-      },
-      '::-webkit-scrollbar-thumb': {
-        background: 'rgba(16, 24, 40, 0.05)',
-        borderRadius: '10px',
-      },
-    }),
+    // menuList: styles => ({
+    //   ...styles,
+    //   '::-webkit-scrollbar': {
+    //     width: '8px',
+    //     height: '0px',
+    //   },
+    //   '::-webkit-scrollbar-thumb': {
+    //     background: 'rgba(16, 24, 40, 0.05)',
+    //     borderRadius: '10px',
+    //   },
+    // }),
   };
 
   return (
@@ -104,7 +115,7 @@ export const SelectLocation = ({ locationChanging }) => {
       <Select
         defaultValue={location}
         onChange={handleChangeInput}
-        maxMenuHeight={188}
+        maxMenuHeight={240}
         placeholder="City"
         options={locationOptions}
         styles={selectStyles}

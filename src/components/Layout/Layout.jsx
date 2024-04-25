@@ -12,7 +12,7 @@ const Layout = () => {
           <Outlet />
         </Suspense>
       </main>
-      <footer className={css.footer}>footer</footer>
+      <footer className={css.footer}>Camper rentals &#169; 2024</footer>
     </div>
   );
 };

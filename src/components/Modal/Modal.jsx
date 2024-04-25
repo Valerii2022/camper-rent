@@ -11,6 +11,8 @@ import { getAdverts } from 'redux/selectors';
 import { nanoid } from 'nanoid';
 import { BookingForm } from 'components/BookingForm/BookingForm';
 import { AdvertDetails } from 'components/AdvertDetails/AdvertDetails';
+import { reverseLocation } from 'utils/reverseLocation';
+import { formatString } from 'utils/camperFormFormatter';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -78,7 +80,7 @@ export const Modal = ({ modalIsOpen, currentId, successModalOpening }) => {
               </span>
               <span>
                 <LocationIcon width="16" height="16" />
-                {location}
+                {reverseLocation(location)}
               </span>
             </div>
             <p className={css.price}>
@@ -133,7 +135,7 @@ export const Modal = ({ modalIsOpen, currentId, successModalOpening }) => {
                     <ul className={css.featuresList}>
                       <li>
                         <p>Form</p>
-                        <p>{form}</p>
+                        <p>{formatString(form)}</p>
                       </li>
                       <li>
                         <p>Length</p>

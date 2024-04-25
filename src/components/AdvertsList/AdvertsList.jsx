@@ -12,6 +12,7 @@ import { addFavourites, deleteFavourites } from 'redux/favouritesSlise';
 import { BookingSuccessModal } from 'components/Modal/BookingSuccessModal';
 import { fetchAdverts } from 'redux/operations';
 import { Button } from 'components/Button/Button';
+import { reverseLocation } from 'utils/reverseLocation';
 
 export const AdvertsList = ({ adverts, page, setPage }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -93,6 +94,7 @@ export const AdvertsList = ({ adverts, page, setPage }) => {
                               width="24"
                               height="24"
                               onClick={handleFavouritesDelete}
+                              className={css.heartIcon}
                             />
                           ) : (
                             <HeartIcon
@@ -100,6 +102,7 @@ export const AdvertsList = ({ adverts, page, setPage }) => {
                               width="24"
                               height="24"
                               onClick={handleFavouritesAdd}
+                              className={css.heartIcon}
                             />
                           )}
                         </div>
@@ -111,7 +114,7 @@ export const AdvertsList = ({ adverts, page, setPage }) => {
                         </span>
                         <span>
                           <LocationIcon width="16" height="16" />
-                          {location}
+                          {reverseLocation(location)}
                         </span>
                       </div>
                     </div>
@@ -128,7 +131,7 @@ export const AdvertsList = ({ adverts, page, setPage }) => {
             })}
           </ul>
         ) : (
-          <p>There are no adverts yet...</p>
+          <p className={css.emptyList}>There are no adverts yet...</p>
         )}
 
         {adverts.length >= 4 && adverts.length < totalAdvertsCount && (

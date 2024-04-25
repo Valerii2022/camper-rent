@@ -23,9 +23,11 @@ export const Favourites = () => {
   }, [dispatch, location, page, type]);
 
   return (
-    <div className={`${css.catalog} container`}>
-      <Sidebar />
-      <AdvertsList adverts={favouritesItems} page={page} setPage={setPage} />
+    <div className={css.backgroundContainer}>
+      <div className={`${css.catalog} container`}>
+        <Sidebar />
+        <AdvertsList adverts={favouritesItems} page={page} setPage={setPage} />
+      </div>
     </div>
   );
 };

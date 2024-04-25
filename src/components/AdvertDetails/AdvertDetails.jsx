@@ -13,6 +13,8 @@ import { ReactComponent as MicrowaveIcon } from '../../image/microwave.svg';
 import { ReactComponent as RadioIcon } from '../../image/radio.svg';
 import { ReactComponent as ShowerIcon } from '../../image/shower.svg';
 import { ReactComponent as ToiletIcon } from '../../image/toilet.svg';
+import { ReactComponent as WaterIcon } from '../../image/water.svg';
+import { ReactComponent as GasIcon } from '../../image/gas.svg';
 
 export const AdvertDetails = ({ advert }) => {
   const { adults, children, transmission, details, engine } = advert;
@@ -110,6 +112,18 @@ export const AdvertDetails = ({ advert }) => {
         <li>
           <ToiletIcon width="20" height="20" />
           {details.toilet > 1 ? `${details.toilet} toilet` : 'toilet'}
+        </li>
+      )}
+      {details.water && (
+        <li>
+          <WaterIcon width="20" height="20" />
+          water
+        </li>
+      )}
+      {details.gas && (
+        <li>
+          <GasIcon width="20" height="20" />
+          gas
         </li>
       )}
     </ul>

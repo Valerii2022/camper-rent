@@ -12,4 +12,6 @@
 .footer {
   text-align: center;
   padding: 10px;
+  font-size: 12px;
+  background-color: var(--primary-bg-color);
 }
