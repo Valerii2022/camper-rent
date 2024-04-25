@@ -11,22 +11,31 @@ export const Favourites = () => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const { totalAdverts } = useSelector(getAdverts);
-  const { location, type } = useSelector(getFilters);
+  const { location, type, equipment, transmission } = useSelector(getFilters);
   const favourites = useSelector(getFavourites);
   const favouritesItems = totalAdverts.filter(el => {
     return favourites.includes(el._id);
   });
 
+  const end = 4 * page;
+
+  const favouritesForPagination = favouritesItems.slice(0, end);
+
   useEffect(() => {
     dispatch(fetchTotalAdverts());
-    dispatch(fetchAdverts({ page, location, type }));
-  }, [dispatch, location, page, type]);
+    dispatch(fetchAdverts({ page, location, type, equipment, transmission }));
+  }, [dispatch, location, page, type, equipment, transmission]);
 
   return (
     <div className={css.backgroundContainer}>
       <div className={`${css.catalog} container`}>
         <Sidebar />
-        <AdvertsList adverts={favouritesItems} page={page} setPage={setPage} />
+        <AdvertsList
+          adverts={favouritesForPagination}
+          page={page}
+          setPage={setPage}
+          limit={favouritesItems.length}
+        />
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ import { ReactComponent as IntegratedIcon } from '../../image/integrated.svg';
 import { ReactComponent as AlcoveIcon } from '../../image/alcove.svg';
 import { ReactComponent as LocationIcon } from '../../image/location.svg';
 import { SelectLocation } from 'components/SelectLocation/SelectLocation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addFilter } from 'redux/favouritesSlise';
 import { fetchAdverts } from 'redux/operations';
@@ -21,6 +21,12 @@ export const Sidebar = () => {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(
+      addFilter({ location: '', type: '', equipment: [], transmission: '' })
+    );
+  }, []);
+
   const handleChangeRadioBtn = e => {
     const { id } = e.target;
     setType(id);
@@ -30,13 +36,17 @@ export const Sidebar = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = [];
+    let transmission = '';
     formData.forEach((_, key) => {
-      if (key !== 'type') {
+      if (key !== 'type' && key !== 'automatic') {
         data.push(key);
       }
+      if (key === 'automatic') {
+        transmission = key;
+      }
     });
-    dispatch(addFilter({ location, type, equipment: data }));
-    dispatch(fetchAdverts({ page: 1, location, type }));
+    dispatch(addFilter({ location, type, equipment: data, transmission }));
+    dispatch(fetchAdverts({ page: 1, location, type, transmission }));
   };
 
   return (
@@ -55,11 +65,11 @@ export const Sidebar = () => {
               <li>
                 <input
                   type="checkbox"
-                  id="AC"
+                  id="airConditioner"
                   className={css.filterInput}
-                  name="AC"
+                  name="airConditioner"
                 />
-                <label htmlFor="AC" className={css.filterLabel}>
+                <label htmlFor="airConditioner" className={css.filterLabel}>
                   <ACIcon width="32" height="32" />
                   AC
                 </label>

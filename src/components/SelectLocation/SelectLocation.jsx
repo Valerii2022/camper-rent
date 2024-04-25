@@ -1,21 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Select from 'react-select';
-import { fetchAdverts } from 'redux/operations';
 import { getAdverts } from 'redux/selectors';
 import { reverseLocation } from 'utils/reverseLocation';
 
 export const SelectLocation = ({ locationChanging }) => {
   const [location, setLocation] = useState('');
-  const dispatch = useDispatch();
   const { totalAdverts } = useSelector(getAdverts);
   const locations = totalAdverts.map(el => el.location);
   const uniqueSet = new Set(locations);
   const uniqueLocations = Array.from(uniqueSet);
-
-  useEffect(() => {
-    dispatch(fetchAdverts({ page: 1, location, type: '' }));
-  }, [location, dispatch]);
 
   const handleChangeInput = e => {
     setLocation(e.value);

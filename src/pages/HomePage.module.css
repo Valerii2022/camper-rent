@@ -74,8 +74,5 @@
 .catalog {
   display: flex;
   gap: 64px;
-}
-
-.catalogContent {
-  flex-grow: 1;
+  min-height: calc(100vh - 109px);
 }

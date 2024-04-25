@@ -14,13 +14,12 @@ import { fetchAdverts } from 'redux/operations';
 import { Button } from 'components/Button/Button';
 import { reverseLocation } from 'utils/reverseLocation';
 
-export const AdvertsList = ({ adverts, page, setPage }) => {
+export const AdvertsList = ({ adverts, page, setPage, limit }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [successModalIsOpen, setSuccessModalIsOpen] = useState(false);
   const [id, setId] = useState(null);
 
   const dispatch = useDispatch();
-
   const favourites = useSelector(getFavourites);
   const { totalAdvertsCount } = useSelector(getAdverts);
 
@@ -134,12 +133,13 @@ export const AdvertsList = ({ adverts, page, setPage }) => {
           <p className={css.emptyList}>There are no adverts yet...</p>
         )}
 
-        {adverts.length >= 4 && adverts.length < totalAdvertsCount && (
+        {!(adverts.length <= totalAdvertsCount && limit <= adverts.length) && (
           <div onClick={handleLoadMoreBtnclick} className={css.btnWrapper}>
             <Button title="Load more" transparent />
           </div>
         )}
       </div>
+
       {modalIsOpen && (
         <Modal
           currentId={id}
@@ -147,6 +147,7 @@ export const AdvertsList = ({ adverts, page, setPage }) => {
           successModalOpening={handleSuccessModalOpening}
         />
       )}
+
       {successModalIsOpen && (
         <BookingSuccessModal modalIsOpen={handleSuccessModalOpening} />
       )}
