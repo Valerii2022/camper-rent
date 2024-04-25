@@ -21,20 +21,35 @@ export const Favourites = () => {
 
   const favouritesForPagination = favouritesItems.slice(0, end);
 
+  const typeFilteredAdverts = favouritesForPagination.filter(
+    el => el.form === type
+  );
+  // const locationFilteredAdverts = favouritesForPagination.filter(
+  //   el => el.location === location
+  // );
+
   useEffect(() => {
     dispatch(fetchTotalAdverts());
+  }, []);
+
+  useEffect(() => {
+    // dispatch(fetchTotalAdverts());
     dispatch(fetchAdverts({ page, location, type, equipment, transmission }));
   }, [dispatch, location, page, type, equipment, transmission]);
 
   return (
     <div className={css.backgroundContainer}>
       <div className={`${css.catalog} container`}>
-        <Sidebar />
+        <Sidebar setPage={setPage} />
         <AdvertsList
-          adverts={favouritesForPagination}
+          adverts={
+            typeFilteredAdverts.length !== 0
+              ? typeFilteredAdverts
+              : favouritesItems
+          }
           page={page}
           setPage={setPage}
-          limit={favouritesItems.length}
+          limit={typeFilteredAdverts.length || favouritesItems.length}
         />
       </div>
     </div>

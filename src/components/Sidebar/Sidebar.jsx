@@ -15,7 +15,7 @@ import { addFilter } from 'redux/favouritesSlise';
 import { fetchAdverts } from 'redux/operations';
 import { Button } from 'components/Button/Button';
 
-export const Sidebar = () => {
+export const Sidebar = ({ setPage }) => {
   const [location, setLocation] = useState('');
   const [type, setType] = useState('');
 
@@ -45,6 +45,7 @@ export const Sidebar = () => {
         transmission = key;
       }
     });
+    setPage(1);
     dispatch(addFilter({ location, type, equipment: data, transmission }));
     dispatch(fetchAdverts({ page: 1, location, type, transmission }));
   };

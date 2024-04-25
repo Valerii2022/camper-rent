@@ -4,7 +4,7 @@ import { fetchAdverts, fetchTotalAdverts } from './operations';
 const advertsSlice = createSlice({
   name: 'adverts',
   initialState: {
-    totalAdvertsCount: 13,
+    totalAdvertsCount: 0,
     totalAdverts: [],
     items: [],
     isLoading: false,
