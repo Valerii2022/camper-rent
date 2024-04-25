@@ -24,16 +24,12 @@ export const Favourites = () => {
   const typeFilteredAdverts = favouritesForPagination.filter(
     el => el.form === type
   );
-  // const locationFilteredAdverts = favouritesForPagination.filter(
-  //   el => el.location === location
-  // );
 
   useEffect(() => {
     dispatch(fetchTotalAdverts());
   }, []);
 
   useEffect(() => {
-    // dispatch(fetchTotalAdverts());
     dispatch(fetchAdverts({ page, location, type, equipment, transmission }));
   }, [dispatch, location, page, type, equipment, transmission]);
 
@@ -43,9 +39,7 @@ export const Favourites = () => {
         <Sidebar setPage={setPage} />
         <AdvertsList
           adverts={
-            typeFilteredAdverts.length !== 0
-              ? typeFilteredAdverts
-              : favouritesItems
+            type ? typeFilteredAdverts.slice(0, end) : favouritesForPagination
           }
           page={page}
           setPage={setPage}

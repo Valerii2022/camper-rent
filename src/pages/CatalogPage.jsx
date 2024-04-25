@@ -19,7 +19,6 @@ export const Catalog = () => {
   }, []);
 
   useEffect(() => {
-    // dispatch(fetchTotalAdverts());
     dispatch(fetchAdverts({ page, location, type, equipment, transmission }));
   }, [dispatch, location, page, type, equipment, transmission]);
 
