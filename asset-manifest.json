@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/camper-rent/static/css/main.1320a1c9.css",
-    "main.js": "/camper-rent/static/js/main.1e06ecc8.js",
+    "main.js": "/camper-rent/static/js/main.6d16d593.js",
     "static/media/title.png": "/camper-rent/static/media/title.a360e6e5cc0125837c65.png",
     "static/media/AC.svg": "/camper-rent/static/media/AC.e958509129baf1cbc457d03d571594e6.svg",
     "static/media/van-option.svg": "/camper-rent/static/media/van-option.650243b32d84777b3e4f543efb602ad5.svg",
@@ -39,10 +39,10 @@
     "static/media/camping-info.svg": "/camper-rent/static/media/camping-info.e082593997fce5fbc7d6e6b0e13a8ac6.svg",
     "static/media/contact.svg": "/camper-rent/static/media/contact.1eb4412622f42f134ad5ac7159e27653.svg",
     "main.1320a1c9.css.map": "/camper-rent/static/css/main.1320a1c9.css.map",
-    "main.1e06ecc8.js.map": "/camper-rent/static/js/main.1e06ecc8.js.map"
+    "main.6d16d593.js.map": "/camper-rent/static/js/main.6d16d593.js.map"
   },
   "entrypoints": [
     "static/css/main.1320a1c9.css",
-    "static/js/main.1e06ecc8.js"
+    "static/js/main.6d16d593.js"
   ]
 }
