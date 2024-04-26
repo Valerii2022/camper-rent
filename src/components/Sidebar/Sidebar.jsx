@@ -48,7 +48,12 @@ export const Sidebar = ({ setPage }) => {
     setPage(1);
     dispatch(addFilter({ location: reverseLocation(location), type }));
     dispatch(
-      fetchAdverts({ page: 1, location: reverseLocation(location), type })
+      fetchAdverts({
+        page: 1,
+        location: reverseLocation(location),
+        type,
+        limit: 4,
+      })
     );
   };
 
@@ -80,6 +85,7 @@ export const Sidebar = ({ setPage }) => {
         location: reverseLocation(location),
         type,
         transmission,
+        limit: 4,
       })
     );
   };
