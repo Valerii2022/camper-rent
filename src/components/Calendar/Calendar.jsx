@@ -42,5 +42,3 @@ export const CalendarInput = ({ setDate, isDateEmpty, setIsDateEmpty }) => {
     </>
   );
 };
-
-// https://reactdatepicker.com/
