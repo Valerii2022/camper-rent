@@ -133,11 +133,13 @@ export const AdvertsList = ({ adverts, page, setPage, limit }) => {
           <p className={css.emptyList}>There are no adverts yet...</p>
         )}
 
-        {!(adverts.length <= totalAdvertsCount && limit <= adverts.length) && (
-          <div onClick={handleLoadMoreBtnclick} className={css.btnWrapper}>
-            <Button title="Load more" transparent />
-          </div>
-        )}
+        {limit <= totalAdvertsCount &&
+          limit >= 4 &&
+          adverts.length % 4 === 0 && (
+            <div onClick={handleLoadMoreBtnclick} className={css.btnWrapper}>
+              <Button title="Load more" transparent />
+            </div>
+          )}
       </div>
 
       {modalIsOpen && (
