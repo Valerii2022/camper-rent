@@ -64,7 +64,15 @@ export const Sidebar = ({ setPage }) => {
       <form onSubmit={handleSubmitForm}>
         <label className={css.locationLabel}>
           Location
-          <LocationIcon width="18" height="20" className={css.locationIcon} />
+          <LocationIcon
+            width="18"
+            height="20"
+            className={
+              location
+                ? `${css.locationIcon}`
+                : `${css.locationIcon} ${css.locationIconUnfocused}`
+            }
+          />
           <SelectLocation
             currentLocation={location}
             locationChanging={setLocation}

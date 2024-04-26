@@ -21,6 +21,11 @@
   bottom: 18px;
   left: 18px;
   z-index: 1;
+  stroke: var(--primary-color);
+}
+
+.locationIconUnfocused {
+  stroke: rgba(16, 24, 40, 0.6);
 }
 
 .title {

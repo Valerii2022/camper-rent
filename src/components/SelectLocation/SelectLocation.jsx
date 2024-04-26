@@ -35,7 +35,7 @@ export const SelectLocation = ({ locationChanging, currentLocation }) => {
       return {
         ...styles,
         backgroundColor: 'transparent',
-        color: isFocused ? '#101828' : 'rgba(16, 24, 40, 0.40)',
+        color: isFocused ? '#101828' : 'rgba(16, 24, 40, 0.6)',
         fontSize: '16px',
         fontWeight: '400',
         lineHeight: '1.25',
@@ -49,13 +49,13 @@ export const SelectLocation = ({ locationChanging, currentLocation }) => {
     placeholder: styles => {
       return {
         ...styles,
-        color: 'rgba(16, 24, 40, 0.6)',
+        color: location ? '#101828' : 'rgba(16, 24, 40, 0.6)',
         fontSize: '16px',
         fontWeight: '400',
         lineHeight: '1.25',
       };
     },
-    dropdownIndicator: (styles, state) => ({
+    dropdownIndicator: styles => ({
       ...styles,
       display: 'none',
     }),
@@ -72,7 +72,6 @@ export const SelectLocation = ({ locationChanging, currentLocation }) => {
   return (
     <>
       <Select
-        // defaultValue={location}
         value={location}
         onChange={handleChangeInput}
         maxMenuHeight={240}
