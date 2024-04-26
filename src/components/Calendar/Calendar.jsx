@@ -12,23 +12,34 @@ const MyContainer = ({ className, children }) => {
   );
 };
 
-export const CalendarInput = () => {
+export const CalendarInput = ({ setDate, isDateEmpty, setIsDateEmpty }) => {
   const [selectedDate, setSelectedDate] = useState(null);
 
   return (
-    <DatePicker
-      showIcon
-      icon={<CalendarIcon className={css.icon} />}
-      toggleCalendarOnIconClick
-      closeOnScroll={true}
-      selected={selectedDate}
-      calendarContainer={MyContainer}
-      required
-      className={css.input}
-      onChange={date => setSelectedDate(date)}
-      dateFormat="MM/dd/YYYY"
-      placeholderText="Booking date"
-    />
+    <>
+      <DatePicker
+        showIcon
+        icon={<CalendarIcon className={css.icon} />}
+        toggleCalendarOnIconClick
+        closeOnScroll={true}
+        selected={selectedDate}
+        calendarContainer={MyContainer}
+        required
+        className={
+          isDateEmpty ? `${css.input} ${css.errorInput}` : `${css.input}`
+        }
+        onChange={date => {
+          setDate(date);
+          setIsDateEmpty(false);
+          return setSelectedDate(date);
+        }}
+        dateFormat="MM/dd/YYYY"
+        placeholderText="Booking date"
+      />
+      <div className={css.errorsWrapper}>
+        {isDateEmpty && <p className={css.error}>Required field</p>}
+      </div>
+    </>
   );
 };
 

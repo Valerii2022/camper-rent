@@ -1,4 +1,4 @@
-input {
+.input {
   height: 56px;
   width: 100%;
   padding: 0;
@@ -18,4 +18,19 @@ input {
   right: 10px;
   width: 24px;
   height: 24px;
+}
+
+.errorInput {
+  border: 1px solid var(--primary-accent-color);
+}
+
+.errorsWrapper {
+  min-height: 14px;
+  padding: 4px 8px;
+}
+
+.error {
+  color: var(--primary-accent-color);
+  font-size: 12px;
+  line-height: 1;
 }

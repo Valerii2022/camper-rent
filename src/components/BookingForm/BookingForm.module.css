@@ -16,8 +16,12 @@
 .formInner {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  /* gap: 14px; */
   margin-bottom: 24px;
+}
+
+.formInner label {
+  position: relative;
 }
 
 .input {
@@ -49,4 +53,17 @@
   font-size: 16px;
   line-height: 1.25;
   color: rgba(16, 24, 40, 0.6);
+}
+
+.errorsWrapper {
+  min-height: 14px;
+  padding: 4px 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.error {
+  color: var(--primary-accent-color);
+  font-size: 12px;
+  line-height: 1;
 }
