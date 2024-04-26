@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { locations } from './locations';
 
-export const SelectLocation = ({ locationChanging }) => {
-  const [location, setLocation] = useState('');
+export const SelectLocation = ({ locationChanging, currentLocation }) => {
+  const [location, setLocation] = useState(currentLocation);
 
   const handleChangeInput = e => {
     setLocation(e.value);
     locationChanging(e.value);
   };
+
+  useEffect(() => {
+    setLocation(currentLocation);
+  }, [currentLocation]);
 
   const selectStyles = {
     control: () => ({
@@ -68,10 +72,11 @@ export const SelectLocation = ({ locationChanging }) => {
   return (
     <>
       <Select
-        defaultValue={location}
+        // defaultValue={location}
+        value={location}
         onChange={handleChangeInput}
         maxMenuHeight={240}
-        placeholder="City"
+        placeholder={location ? location : 'City'}
         options={locations}
         styles={selectStyles}
         components={{

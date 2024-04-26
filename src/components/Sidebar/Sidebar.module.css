@@ -89,3 +89,8 @@
 .filterInput:checked ~ .filterLabel {
   border: 1px solid var(--primary-accent-color);
 }
+
+.buttonsWrap {
+  display: flex;
+  justify-content: space-between;
+}

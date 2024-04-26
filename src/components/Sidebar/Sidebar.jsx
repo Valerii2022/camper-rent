@@ -33,10 +33,13 @@ export const Sidebar = ({ setPage }) => {
     setType(id);
   };
 
-  // const handleResetForm = () => {
-  //   setLocation('');
-  //   setType(null);
-  // };
+  const handleResetForm = () => {
+    setLocation('');
+    setType(null);
+    setPage(1);
+    dispatch(addFilter({ location, type }));
+    dispatch(fetchAdverts({ page: 1, location, type }));
+  };
 
   const handleSubmitForm = e => {
     e.preventDefault();
@@ -62,7 +65,10 @@ export const Sidebar = ({ setPage }) => {
         <label className={css.locationLabel}>
           Location
           <LocationIcon width="18" height="20" className={css.locationIcon} />
-          <SelectLocation locationChanging={setLocation} />
+          <SelectLocation
+            currentLocation={location}
+            locationChanging={setLocation}
+          />
         </label>
         <h2 className={css.title}>Filters</h2>
         <div className={css.optionWrapper}>
@@ -182,10 +188,12 @@ export const Sidebar = ({ setPage }) => {
             </ul>
           </div>
         </div>
-        <Button title="Search" />
-        {/* <div onClick={handleResetForm}>
-          <Button title="Reset" transparent />
-        </div> */}
+        <div className={css.buttonsWrap}>
+          <Button title="Search" />
+          <div onClick={handleResetForm}>
+            <Button title="Reset" transparent />
+          </div>
+        </div>
       </form>
     </aside>
   );
