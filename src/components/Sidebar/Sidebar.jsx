@@ -46,7 +46,9 @@ export const Sidebar = ({ setPage }) => {
       shower: false,
     });
     setPage(1);
-    dispatch(addFilter({ location: reverseLocation(location), type }));
+    dispatch(
+      addFilter({ location: reverseLocation(location), type, equipment: [] })
+    );
     dispatch(
       fetchAdverts({ page: 1, location: reverseLocation(location), type })
     );
