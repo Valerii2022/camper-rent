@@ -68,7 +68,7 @@ clicking the 'Load more' button.
 
 ![Button Load more](/assets/load-more.png)
 
-#### Book acamper
+#### Book camper
 
 The user can fill out a form with information about himself inside the modal
 window and book a camper for the selected date. Name, email and booking date
