@@ -1,10 +1,9 @@
 export const locations = [
-  { value: null, label: 'City' },
-  { value: 'Ukraine, Kyiv', label: 'Kyiv, Ukraine' },
-  { value: 'Ukraine, Poltava', label: 'Poltava, Ukraine' },
-  { value: 'Ukraine, Dnipro', label: 'Dnipro, Ukraine' },
-  { value: 'Ukraine, Odesa', label: 'Odesa, Ukraine' },
-  { value: 'Ukraine, Kharkiv', label: 'Kharkiv, Ukraine' },
-  { value: 'Ukraine, Sumy', label: 'Sumy, Ukraine' },
-  { value: 'Ukraine, Lviv', label: 'Lviv, Ukraine' },
+  { value: 'Kyiv, Ukraine', label: 'Kyiv, Ukraine' },
+  { value: 'Poltava, Ukraine', label: 'Poltava, Ukraine' },
+  { value: 'Dnipro, Ukraine', label: 'Dnipro, Ukraine' },
+  { value: 'Odesa, Ukraine', label: 'Odesa, Ukraine' },
+  { value: 'Kharkiv, Ukraine', label: 'Kharkiv, Ukraine' },
+  { value: 'Sumy, Ukraine', label: 'Sumy, Ukraine' },
+  { value: 'Lviv, Ukraine', label: 'Lviv, Ukraine' },
 ];

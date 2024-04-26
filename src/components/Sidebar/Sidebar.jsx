@@ -14,10 +14,18 @@ import { useDispatch } from 'react-redux';
 import { addFilter } from 'redux/favouritesSlise';
 import { fetchAdverts } from 'redux/operations';
 import { Button } from 'components/Button/Button';
+import { reverseLocation } from 'utils/reverseLocation';
 
 export const Sidebar = ({ setPage }) => {
   const [location, setLocation] = useState('');
   const [type, setType] = useState(null);
+  const [isChecked, setIsChecked] = useState({
+    airConditioner: false,
+    automatic: false,
+    kitchen: false,
+    TV: false,
+    shower: false,
+  });
 
   const dispatch = useDispatch();
 
@@ -36,9 +44,18 @@ export const Sidebar = ({ setPage }) => {
   const handleResetForm = () => {
     setLocation('');
     setType(null);
+    setIsChecked({
+      airConditioner: false,
+      automatic: false,
+      kitchen: false,
+      TV: false,
+      shower: false,
+    });
     setPage(1);
-    dispatch(addFilter({ location, type }));
-    dispatch(fetchAdverts({ page: 1, location, type }));
+    dispatch(addFilter({ location: reverseLocation(location), type }));
+    dispatch(
+      fetchAdverts({ page: 1, location: reverseLocation(location), type })
+    );
   };
 
   const handleSubmitForm = e => {
@@ -55,8 +72,30 @@ export const Sidebar = ({ setPage }) => {
       }
     });
     setPage(1);
-    dispatch(addFilter({ location, type, equipment: data, transmission }));
-    dispatch(fetchAdverts({ page: 1, location, type, transmission }));
+    dispatch(
+      addFilter({
+        location: reverseLocation(location),
+        type,
+        equipment: data,
+        transmission,
+      })
+    );
+    dispatch(
+      fetchAdverts({
+        page: 1,
+        location: reverseLocation(location),
+        type,
+        transmission,
+      })
+    );
+  };
+
+  const handleCheckboxChange = e => {
+    const { name, checked } = e.target;
+    setIsChecked({
+      ...isChecked,
+      [name]: checked,
+    });
   };
 
   return (
@@ -85,6 +124,8 @@ export const Sidebar = ({ setPage }) => {
             <ul className={css.optionsList}>
               <li>
                 <input
+                  checked={isChecked.airConditioner}
+                  onChange={handleCheckboxChange}
                   type="checkbox"
                   id="airConditioner"
                   className={css.filterInput}
@@ -97,6 +138,8 @@ export const Sidebar = ({ setPage }) => {
               </li>
               <li>
                 <input
+                  checked={isChecked.automatic}
+                  onChange={handleCheckboxChange}
                   type="checkbox"
                   id="automatic"
                   className={css.filterInput}
@@ -109,6 +152,8 @@ export const Sidebar = ({ setPage }) => {
               </li>
               <li>
                 <input
+                  checked={isChecked.kitchen}
+                  onChange={handleCheckboxChange}
                   type="checkbox"
                   id="kitchen"
                   className={css.filterInput}
@@ -121,6 +166,8 @@ export const Sidebar = ({ setPage }) => {
               </li>
               <li>
                 <input
+                  checked={isChecked.TV}
+                  onChange={handleCheckboxChange}
                   type="checkbox"
                   id="TV"
                   className={css.filterInput}
@@ -133,6 +180,8 @@ export const Sidebar = ({ setPage }) => {
               </li>
               <li>
                 <input
+                  checked={isChecked.shower}
+                  onChange={handleCheckboxChange}
                   type="checkbox"
                   id="shower"
                   className={css.filterInput}
