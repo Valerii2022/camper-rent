@@ -6,6 +6,7 @@ import { Sidebar } from 'components/Sidebar/Sidebar';
 
 import { getAdverts, getFilters } from 'redux/selectors';
 import { AdvertsList } from 'components/AdvertsList/AdvertsList';
+import { addFilter } from 'redux/favouritesSlise';
 
 export const Catalog = () => {
   const [page, setPage] = useState(1);
@@ -30,14 +31,16 @@ export const Catalog = () => {
   }
 
   useEffect(() => {
-    dispatch(fetchAdverts({ page, limit: 4 }));
-  }, [dispatch, page]);
+    dispatch(addFilter({ equipment: [] }));
+    dispatch(fetchAdverts({ page: 1, limit: 4 }));
+  }, [dispatch]);
 
   return (
     <div className={css.backgroundContainer}>
       <div className={`${css.catalog} container`}>
         <Sidebar setPage={setPage} catalog />
         <AdvertsList
+          catalog
           adverts={equipment ? filteredAdverts : items}
           page={page}
           setPage={setPage}

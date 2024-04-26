@@ -7,14 +7,14 @@ import { AdvertDetails } from 'components/AdvertDetails/AdvertDetails';
 import { useState } from 'react';
 import { Modal } from 'components/Modal/Modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAdverts, getFavourites } from 'redux/selectors';
+import { getAdverts, getFavourites, getFilters } from 'redux/selectors';
 import { addFavourites, deleteFavourites } from 'redux/favouritesSlise';
 import { BookingSuccessModal } from 'components/Modal/BookingSuccessModal';
 import { fetchAdverts } from 'redux/operations';
 import { Button } from 'components/Button/Button';
 import { reverseLocation } from 'utils/reverseLocation';
 
-export const AdvertsList = ({ adverts, page, setPage, limit }) => {
+export const AdvertsList = ({ adverts, page, setPage, limit, catalog }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [successModalIsOpen, setSuccessModalIsOpen] = useState(false);
   const [id, setId] = useState(null);
@@ -22,6 +22,7 @@ export const AdvertsList = ({ adverts, page, setPage, limit }) => {
   const dispatch = useDispatch();
   const favourites = useSelector(getFavourites);
   const { totalAdvertsCount } = useSelector(getAdverts);
+  const { type, location, transmition } = useSelector(getFilters);
 
   const handleModalOpening = () => {
     setModalIsOpen(!modalIsOpen);
@@ -47,7 +48,13 @@ export const AdvertsList = ({ adverts, page, setPage, limit }) => {
   };
 
   const handleLoadMoreBtnclick = () => {
-    dispatch(fetchAdverts);
+    if (catalog) {
+      dispatch(
+        fetchAdverts({ page: page + 1, type, limit: 4, transmition, location })
+      );
+    } else {
+      dispatch(fetchAdverts);
+    }
     setPage(page + 1);
   };
 

@@ -36,8 +36,8 @@ export const Favourites = () => {
   }
 
   useEffect(() => {
-    dispatch(fetchAdverts({ page, limit: 13 }));
-  }, [dispatch, page]);
+    dispatch(fetchAdverts({ page: 1, limit: 13 }));
+  }, [dispatch]);
 
   return (
     <div className={css.backgroundContainer}>
