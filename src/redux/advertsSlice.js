@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchAdverts, fetchTotalAdverts } from './operations';
+import { fetchAdverts } from './operations';
 
 const advertsSlice = createSlice({
   name: 'adverts',
   initialState: {
-    totalAdvertsCount: 0,
+    totalAdvertsCount: 13,
     totalAdverts: [],
     items: [],
     isLoading: false,
@@ -16,9 +16,6 @@ const advertsSlice = createSlice({
       .addCase(fetchAdverts.pending, state => {
         state.isLoading = true;
       })
-      .addCase(fetchTotalAdverts.pending, state => {
-        state.isLoading = true;
-      })
       .addCase(fetchAdverts.fulfilled, (state, action) => {
         if (action.meta.arg.page === 1) {
           state.items = action.payload;
@@ -28,19 +25,9 @@ const advertsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(fetchTotalAdverts.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.totalAdverts = payload;
-        state.totalAdvertsCount = payload.length;
-        state.error = null;
-      })
       .addCase(fetchAdverts.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.items = [];
-        state.error = payload;
-      })
-      .addCase(fetchTotalAdverts.rejected, (state, { payload }) => {
-        state.isLoading = false;
         state.error = payload;
       });
   },

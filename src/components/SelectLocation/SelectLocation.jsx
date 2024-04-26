@@ -1,34 +1,16 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import Select from 'react-select';
-import { getAdverts } from 'redux/selectors';
-import { reverseLocation } from 'utils/reverseLocation';
+import { locations } from './locations';
 
 export const SelectLocation = ({ locationChanging }) => {
   const [location, setLocation] = useState('');
-  const { totalAdverts } = useSelector(getAdverts);
-  const locations = totalAdverts.map(el => el.location);
-  const uniqueSet = new Set(locations);
-  const uniqueLocations = Array.from(uniqueSet);
 
   const handleChangeInput = e => {
     setLocation(e.value);
     locationChanging(e.value);
   };
 
-  const locationOptions = [
-    { value: null, label: 'City' },
-    ...uniqueLocations.map(el => {
-      const newEl = reverseLocation(el);
-      return { value: el, label: newEl };
-    }),
-  ];
-
   const selectStyles = {
-    // input: styles => ({
-    //   ...styles,
-    //   height: '52px',
-    // }),
     control: () => ({
       borderRadius: '10px',
       backgroundColor: '#f7f7f7',
@@ -45,10 +27,6 @@ export const SelectLocation = ({ locationChanging }) => {
       fontWeight: '400',
       lineHeight: '1.25',
     }),
-    // valueContainer: styles => ({
-    //   ...styles,
-    //   height: '52px',
-    // }),
     option: (styles, { isFocused }) => {
       return {
         ...styles,
@@ -76,12 +54,6 @@ export const SelectLocation = ({ locationChanging }) => {
     dropdownIndicator: (styles, state) => ({
       ...styles,
       display: 'none',
-      // svg: {
-      //   fill: '#101828',
-      // },
-      // cursor: 'pointer',
-      // transition: 'transform 250ms linear',
-      // transform: state.isFocused ? 'rotate(180deg)' : null,
     }),
     menu: styles => ({
       ...styles,
@@ -91,17 +63,6 @@ export const SelectLocation = ({ locationChanging }) => {
       paddingBottom: '18px',
       paddingRight: '8px',
     }),
-    // menuList: styles => ({
-    //   ...styles,
-    //   '::-webkit-scrollbar': {
-    //     width: '8px',
-    //     height: '0px',
-    //   },
-    //   '::-webkit-scrollbar-thumb': {
-    //     background: 'rgba(16, 24, 40, 0.05)',
-    //     borderRadius: '10px',
-    //   },
-    // }),
   };
 
   return (
@@ -111,7 +72,7 @@ export const SelectLocation = ({ locationChanging }) => {
         onChange={handleChangeInput}
         maxMenuHeight={240}
         placeholder="City"
-        options={locationOptions}
+        options={locations}
         styles={selectStyles}
         components={{
           IndicatorSeparator: () => null,

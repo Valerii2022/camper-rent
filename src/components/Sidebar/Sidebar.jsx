@@ -25,7 +25,7 @@ export const Sidebar = ({ setPage }) => {
     dispatch(
       addFilter({ location: '', type: '', equipment: [], transmission: '' })
     );
-  }, []);
+  }, [dispatch]);
 
   const handleChangeRadioBtn = e => {
     const { id } = e.target;
