@@ -4,7 +4,7 @@ import { fetchAdverts } from 'redux/operations';
 import css from './HomePage.module.css';
 import { Sidebar } from 'components/Sidebar/Sidebar';
 
-import { getAdverts, getFilters } from 'redux/selectors';
+import { getAdverts } from 'redux/selectors';
 import { AdvertsList } from 'components/AdvertsList/AdvertsList';
 
 export const Catalog = () => {
@@ -12,13 +12,10 @@ export const Catalog = () => {
   const dispatch = useDispatch();
   const { items } = useSelector(getAdverts);
   const { totalAdvertsCount } = useSelector(getAdverts);
-  const { location, type, equipment, transmission } = useSelector(getFilters);
 
   useEffect(() => {
-    dispatch(
-      fetchAdverts({ page, location, type, equipment, transmission, limit: 4 })
-    );
-  }, [dispatch, location, page, type, equipment, transmission]);
+    dispatch(fetchAdverts({ page, limit: 4 }));
+  }, [dispatch, page]);
 
   return (
     <div className={css.backgroundContainer}>

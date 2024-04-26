@@ -3,14 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAdverts } from 'redux/operations';
 import css from './HomePage.module.css';
 import { Sidebar } from 'components/Sidebar/Sidebar';
-import { getAdverts, getFavourites, getFilters } from 'redux/selectors';
+import { getAdverts, getFavourites } from 'redux/selectors';
 import { AdvertsList } from 'components/AdvertsList/AdvertsList';
 
 export const Favourites = () => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const { items } = useSelector(getAdverts);
-  const { location, type, equipment, transmission } = useSelector(getFilters);
   const favourites = useSelector(getFavourites);
   const favouritesItems = items.filter(el => {
     return favourites.includes(el._id);
@@ -19,10 +18,8 @@ export const Favourites = () => {
   const end = 4 * page;
 
   useEffect(() => {
-    dispatch(
-      fetchAdverts({ page, location, type, equipment, transmission, limit: 13 })
-    );
-  }, [dispatch, location, page, type, equipment, transmission]);
+    dispatch(fetchAdverts({ page, limit: 13 }));
+  }, [dispatch, page]);
 
   return (
     <div className={css.backgroundContainer}>

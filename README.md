@@ -71,6 +71,7 @@ clicking the 'Load more' button.
 #### Book acamper
 
 The user can fill out a form with information about himself inside the modal
-window and book a camper for the selected date.
+window and book a camper for the selected date. Name, email and booking date
+inputs have validation.
 
 ![Button Load more](/assets/booking.png)

@@ -9,7 +9,7 @@ import { ReactComponent as IntegratedIcon } from '../../image/integrated.svg';
 import { ReactComponent as AlcoveIcon } from '../../image/alcove.svg';
 import { ReactComponent as LocationIcon } from '../../image/location.svg';
 import { SelectLocation } from 'components/SelectLocation/SelectLocation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addFilter } from 'redux/favouritesSlise';
 import { fetchAdverts } from 'redux/operations';
@@ -28,12 +28,6 @@ export const Sidebar = ({ setPage }) => {
   });
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(
-      addFilter({ location: '', type: '', equipment: [], transmission: '' })
-    );
-  }, [dispatch]);
 
   const handleChangeRadioBtn = e => {
     setType(e.target.value);
