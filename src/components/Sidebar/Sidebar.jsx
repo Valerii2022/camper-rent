@@ -16,7 +16,7 @@ import { fetchAdverts } from 'redux/operations';
 import { Button } from 'components/Button/Button';
 import { reverseLocation } from 'utils/reverseLocation';
 
-export const Sidebar = ({ setPage }) => {
+export const Sidebar = ({ setPage, catalog }) => {
   const [location, setLocation] = useState('');
   const [type, setType] = useState(null);
   const [isChecked, setIsChecked] = useState({
@@ -26,7 +26,6 @@ export const Sidebar = ({ setPage }) => {
     TV: false,
     shower: false,
   });
-
   const dispatch = useDispatch();
 
   const handleChangeRadioBtn = e => {
@@ -47,16 +46,9 @@ export const Sidebar = ({ setPage }) => {
     });
     setPage(1);
     dispatch(
-      addFilter({ location: reverseLocation(location), type, equipment: [] })
+      addFilter({ location: '', type: '', transmission: '', equipment: [] })
     );
-    dispatch(
-      fetchAdverts({
-        page: 1,
-        location: reverseLocation(location),
-        type,
-        limit: 4,
-      })
-    );
+    dispatch(fetchAdverts({ page: 1, limit: catalog ? 4 : 13 }));
   };
 
   const handleSubmitForm = e => {
@@ -87,7 +79,7 @@ export const Sidebar = ({ setPage }) => {
         location: reverseLocation(location),
         type,
         transmission,
-        limit: 4,
+        limit: catalog ? 4 : 13,
       })
     );
   };

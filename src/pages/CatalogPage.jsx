@@ -36,7 +36,7 @@ export const Catalog = () => {
   return (
     <div className={css.backgroundContainer}>
       <div className={`${css.catalog} container`}>
-        <Sidebar setPage={setPage} />
+        <Sidebar setPage={setPage} catalog />
         <AdvertsList
           adverts={equipment ? filteredAdverts : items}
           page={page}
