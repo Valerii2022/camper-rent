@@ -46,15 +46,10 @@ export const Sidebar = ({ setPage }) => {
       shower: false,
     });
     setPage(1);
-    dispatch(addFilter({ location: reverseLocation(location), type }));
     dispatch(
-      fetchAdverts({
-        page: 1,
-        location: reverseLocation(location),
-        type,
-        limit: 4,
-      })
+      addFilter({ location: '', type: '', transmission: '', equipment: [] })
     );
+    dispatch(fetchAdverts({ page: 1, limit: 13 }));
   };
 
   const handleSubmitForm = e => {
@@ -85,7 +80,6 @@ export const Sidebar = ({ setPage }) => {
         location: reverseLocation(location),
         type,
         transmission,
-        limit: 4,
       })
     );
   };
