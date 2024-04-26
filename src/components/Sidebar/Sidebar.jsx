@@ -17,7 +17,7 @@ import { Button } from 'components/Button/Button';
 
 export const Sidebar = ({ setPage }) => {
   const [location, setLocation] = useState('');
-  const [type, setType] = useState('');
+  const [type, setType] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -28,9 +28,15 @@ export const Sidebar = ({ setPage }) => {
   }, [dispatch]);
 
   const handleChangeRadioBtn = e => {
+    setType(e.target.value);
     const { id } = e.target;
     setType(id);
   };
+
+  // const handleResetForm = () => {
+  //   setLocation('');
+  //   setType(null);
+  // };
 
   const handleSubmitForm = e => {
     e.preventDefault();
@@ -134,6 +140,8 @@ export const Sidebar = ({ setPage }) => {
                   id="panelTruck"
                   className={css.filterInput}
                   name="type"
+                  value="panelTruck"
+                  checked={type === 'panelTruck'}
                   onChange={handleChangeRadioBtn}
                 />
                 <label htmlFor="panelTruck" className={css.filterLabel}>
@@ -147,6 +155,8 @@ export const Sidebar = ({ setPage }) => {
                   id="fullyIntegrated"
                   className={css.filterInput}
                   name="type"
+                  value="fullyIntegrated"
+                  checked={type === 'fullyIntegrated'}
                   onChange={handleChangeRadioBtn}
                 />
                 <label htmlFor="fullyIntegrated" className={css.filterLabel}>
@@ -160,6 +170,8 @@ export const Sidebar = ({ setPage }) => {
                   id="alcove"
                   className={css.filterInput}
                   name="type"
+                  value="alcove"
+                  checked={type === 'alcove'}
                   onChange={handleChangeRadioBtn}
                 />
                 <label htmlFor="alcove" className={css.filterLabel}>
@@ -171,6 +183,9 @@ export const Sidebar = ({ setPage }) => {
           </div>
         </div>
         <Button title="Search" />
+        {/* <div onClick={handleResetForm}>
+          <Button title="Reset" transparent />
+        </div> */}
       </form>
     </aside>
   );

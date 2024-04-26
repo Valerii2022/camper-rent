@@ -30,17 +30,17 @@ export const BookingSuccessModal = ({ modalIsOpen }) => {
 
   return createPortal(
     <div className={css.overlay} onClick={handleBackdropClick}>
-      <div className={css.modal}>
+      <div className={`${css.modal} ${css.successModal}`}>
         <ClosetIcon
           className={css.closeIcon}
-          width="24"
-          height="24"
+          width="32"
+          height="32"
           onClick={() => {
             modalIsOpen();
             document.body.classList.remove('lock');
           }}
         />
-        <h1>Thank you for booking!</h1>
+        <h1 className={css.successTitle}>Thank you for booking!</h1>
       </div>
     </div>,
     modalRoot

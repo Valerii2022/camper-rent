@@ -61,15 +61,17 @@ export const Modal = ({ modalIsOpen, currentId, successModalOpening }) => {
   return createPortal(
     <div className={css.overlay} onClick={handleBackdropClick}>
       <div className={css.modal}>
-        <ClosetIcon
-          className={css.closeIcon}
-          width="32"
-          height="32"
-          onClick={() => {
-            modalIsOpen();
-            document.body.classList.remove('lock');
-          }}
-        />
+        <div className={css.iconWrapper}>
+          <ClosetIcon
+            className={css.closeIcon}
+            width="32"
+            height="32"
+            onClick={() => {
+              modalIsOpen();
+              document.body.classList.remove('lock');
+            }}
+          />
+        </div>
         {currentAdvert && (
           <div className={css.modalInner}>
             <h2 className={css.title}>{name}</h2>

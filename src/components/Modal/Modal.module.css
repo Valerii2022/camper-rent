@@ -28,7 +28,20 @@
   overflow-x: hidden;
 }
 
-.closeIcon {
+.successModal {
+  width: 400px;
+}
+
+.successTitle {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.successModal .closeIcon {
+  margin-left: 288px;
+}
+
+.iconWrapper {
   position: sticky;
   width: 32px;
   top: 0;
@@ -36,6 +49,8 @@
   cursor: pointer;
   stroke: currentColor;
   transition: stroke var(--transition);
+  margin-left: 870px;
+  background-color: var(--primary-white);
 }
 
 .closeIcon:hover,
