@@ -1,22 +1,7 @@
-/* .calendarContainerInner {
-  border: 1px solid rgba(16, 24, 40, 0.2);
-  border-radius: 12px;
-  padding: 16px;
-  width: 325px;
-  height: 273px;
-  background-color: var(--primary-white);
-} */
-
-/* .datePickerWrapper {
-  position: relative;
-  border-radius: 10px;
-  background-color: var(--secondary-bg-color);
-} */
-
 input {
   height: 56px;
   width: 100%;
-  /* padding: 18px; */
+  padding: 0;
   border-radius: 10px;
   background-color: var(--secondary-bg-color);
   border: none;
@@ -29,6 +14,8 @@ input {
 
 .icon {
   position: absolute;
-  top: 18px;
-  right: 18px;
+  top: 8px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
 }

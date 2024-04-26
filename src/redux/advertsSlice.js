@@ -5,7 +5,6 @@ const advertsSlice = createSlice({
   name: 'adverts',
   initialState: {
     totalAdvertsCount: 13,
-    totalAdverts: [],
     items: [],
     isLoading: false,
     error: null,

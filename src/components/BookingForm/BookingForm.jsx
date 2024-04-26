@@ -40,15 +40,6 @@ export const BookingForm = ({ modalIsOpen }) => {
               required
             />
           </label>
-          {/* <label>
-            <input
-              className={css.input}
-              type="date"
-              name="date"
-              placeholder="Booking date"
-              required
-            />
-          </label> */}
           <CalendarInput />
           <label>
             <textarea

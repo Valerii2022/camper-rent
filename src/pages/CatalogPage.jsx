@@ -28,7 +28,7 @@ export const Catalog = () => {
           adverts={items}
           page={page}
           setPage={setPage}
-          limit={totalAdvertsCount}
+          limit={items.length < 4 ? items.length : totalAdvertsCount}
         />
       </div>
     </div>
