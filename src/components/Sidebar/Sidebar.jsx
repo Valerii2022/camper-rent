@@ -79,6 +79,7 @@ export const Sidebar = ({ setPage, catalog }) => {
         location: reverseLocation(location),
         type,
         transmission,
+        limit: catalog ? 4 : 13,
       })
     );
   };
